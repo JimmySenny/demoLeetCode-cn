@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <stdbool.h>
+
+/*
+typedef int bool;
 #define true 0
 #define false 1
+*/
 
-typedef int bool;
+// array realize
 
 typedef struct{
 //int* head  = NULL;
@@ -12,9 +17,11 @@ typedef struct{
 //int* queue = NULL;
 //int  size        = 0;
 //int  currentSize = 0;
+    int* queue;
     int* head;
     int* tail;
-    int* queue;
+    int front;
+    int last;
     int size;
     int currentSize;
 }MyCircularQueue;
@@ -30,6 +37,8 @@ MyCircularQueue* myCircularQueueCreate(int k) {
     mcq->queue = (int*)malloc( sizeof(int) * k + 1 );
     mcq->head = mcq->queue;
     mcq->tail = mcq->queue + k - 1;
+    mcq->front = 0;
+    mcq->last = -1;
     mcq->size = k;
     mcq->currentSize = 0;
 
@@ -45,13 +54,16 @@ bool myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
     }
 
     obj->currentSize++;
+    /*
     obj->tail++;
-
     if( obj->tail - obj->queue == obj->size ){
         obj->tail = obj->queue;
     }
 
     *(obj->tail) = value;
+    */
+    obj->last++;
+    *(obj->queue + obj->last%obj->size) = value;
 
     return true;
 }
@@ -61,16 +73,21 @@ bool myCircularQueueDeQueue(MyCircularQueue* obj) {
     if( obj->currentSize <= 0 ){
         obj->head = obj->queue;
         obj->tail = obj->queue + obj->size - 1;
+        obj->last = -1;
+        obj->front = 0;
         return false;
     }
 
     obj->currentSize--;
+    /*
     *(obj->head) = -1;
-
     obj->head++;
     if( obj->head - obj->queue == obj->size  ){
         obj->head = obj->queue;
     }
+    */
+    *(obj->queue + obj->front % obj->size ) = -1;
+    obj->front++;
 
     return true;
 }
@@ -78,7 +95,8 @@ bool myCircularQueueDeQueue(MyCircularQueue* obj) {
 /** Get the front item from the queue. */
 int myCircularQueueFront(MyCircularQueue* obj) {
     if( obj->currentSize > 0 ){
-        return *(obj->head);
+        return *(obj->queue + obj->front%obj->size );
+//        return *(obj->head);
     }
 
     return -1;
@@ -87,7 +105,8 @@ int myCircularQueueFront(MyCircularQueue* obj) {
 /** Get the last item from the queue. */
 int myCircularQueueRear(MyCircularQueue* obj) {
     if( obj->currentSize > 0 ){
-        return *(obj->tail);
+        return *(obj->queue + obj->last%obj->size );
+//        return *(obj->tail);
     }
   
     return -1;
