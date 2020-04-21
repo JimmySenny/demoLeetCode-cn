@@ -116,7 +116,7 @@ def main():
     cq.viewQueue();
 
     print(cq.head);
-    print(cq.tail);
+    print(cq.tail);SJPLBCHBKHIIQCLF
 
 if __name__ == "__main__":
     main();
