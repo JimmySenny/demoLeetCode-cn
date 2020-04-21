@@ -47,3 +47,177 @@
 - `deQueue()`: 从循环队列中删除一个元素。如果成功删除则返回真。
 - `isEmpty()`: 检查循环队列是否为空。
 - `isFull()`: 检查循环队列是否已满。
+
+```
+typedef struct{
+    int* head;
+    int* tail;
+    int* queue;
+    int size;
+    int currentSize;
+}MyCircularQueue;
+
+/** Initialize your data structure here. Set the size of the queue to be k. */
+MyCircularQueue* myCircularQueueCreate(int k) {
+        MyCircularQueue* mcq;
+
+    mcq = (MyCircularQueue*)malloc( sizeof(MyCircularQueue) );
+
+    printf("[%p]\n", mcq );
+
+    mcq->queue = (int*)malloc( sizeof(int) * k + 1 );
+    mcq->head = mcq->queue;
+    mcq->tail = mcq->queue + k - 1;
+    mcq->size = k;
+    mcq->currentSize = 0;
+
+    printf("[%p]\n", mcq );
+
+    return mcq;
+}
+
+/** Insert an element into the circular queue. Return true if the operation is successful. */
+bool myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
+    if( obj->currentSize >= obj->size ){
+        return false;
+    }
+
+    obj->currentSize++;
+    obj->tail++;
+
+    if( obj->tail - obj->queue == obj->size ){
+        obj->tail = obj->queue;
+    }
+
+    *(obj->tail) = value;
+
+    return true;
+}
+
+/** Delete an element from the circular queue. Return true if the operation is successful. */
+bool myCircularQueueDeQueue(MyCircularQueue* obj) {
+    if( obj->currentSize <= 0 ){
+        obj->head = obj->queue;
+        obj->tail = obj->queue + obj->size - 1;
+        return false;
+    }
+
+    obj->currentSize--;
+    *(obj->head) = -1;
+
+    obj->head++;
+    if( obj->head - obj->queue == obj->size  ){
+        obj->head = obj->queue;
+    }
+
+    return true;
+}
+
+/** Get the front item from the queue. */
+int myCircularQueueFront(MyCircularQueue* obj) {
+    if( obj->currentSize > 0 ){
+        return *(obj->head);
+    }
+
+    return -1;
+}
+
+/** Get the last item from the queue. */
+int myCircularQueueRear(MyCircularQueue* obj) {
+    if( obj->currentSize > 0 ){
+        return *(obj->tail);
+    }
+
+    return -1;
+}
+
+/** Checks whether the circular queue is empty or not. */
+bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
+    if( obj->currentSize == 0 ){
+        return true;
+    }
+
+    return false;
+}
+
+/** Checks whether the circular queue is full or not. */
+bool myCircularQueueIsFull(MyCircularQueue* obj) {
+    if( obj->currentSize == obj->size ){
+        return true;
+    }
+
+    return false;
+}
+
+void myCircularQueueFree(MyCircularQueue* obj) {
+    if( obj->queue != NULL ){
+        free( obj->queue );
+        obj->head = NULL;
+        obj->tail = NULL;
+        obj->queue= NULL;
+    }
+
+    if( obj != NULL ){
+        free(obj);
+        obj = NULL;
+    }
+}
+
+void MyCircularQueueItera(MyCircularQueue* obj) {
+    int* ptr = NULL;
+    ptr = obj->queue;
+    for(int i=0; i<obj->size; i++){
+        printf( "[%d]\t", *ptr++);
+    }
+}
+
+/**
+ * Your MyCircularQueue struct will be instantiated and called as such:
+ * MyCircularQueue* obj = myCircularQueueCreate(k);
+ * bool param_1 = myCircularQueueEnQueue(obj, value);
+ 
+ * bool param_2 = myCircularQueueDeQueue(obj);
+ 
+ * int param_3 = myCircularQueueFront(obj);
+ 
+ * int param_4 = myCircularQueueRear(obj);
+ 
+ * bool param_5 = myCircularQueueIsEmpty(obj);
+ 
+ * bool param_6 = myCircularQueueIsFull(obj);
+ 
+ * myCircularQueueFree(obj);
+*/
+```
+
+
+
+# 队列和 BFS
+
+
+
+广度优先搜索（BFS）的一个常见应用是找出从根结点到目标结点的最短路径。
+
+**1. 结点的处理顺序是什么？**
+
+在第一轮中，我们处理根结点。在第二轮中，我们处理根结点旁边的结点；在第三轮中，我们处理距根结点两步的结点；等等等等。
+
+与树的层序遍历类似，`越是接近根结点的结点将越早地遍历`。
+
+如果在第 k 轮中将结点 `X` 添加到队列中，则根结点与 `X` 之间的最短路径的长度恰好是 `k`。也就是说，第一次找到目标结点时，你已经处于最短路径中。
+
+**2. 队列的入队和出队顺序是什么？**
+
+如上面的动画所示，我们首先将根结点排入队列。然后在每一轮中，我们逐个处理已经在队列中的结点，并将所有邻居添加到队列中。值得注意的是，新添加的节点`不会`立即遍历，而是在下一轮中处理。
+
+结点的处理顺序与它们`添加`到队列的顺序是`完全相同的顺序`，即先进先出（FIFO）。这就是我们在 BFS 中使用队列的原因。
+
+## 广度优先搜索 - 模板
+
+------
+
+之前，我们已经介绍了使用 BFS 的两个主要方案：`遍历`或`找出最短路径`。通常，这发生在树或图中。正如我们在章节描述中提到的，BFS 也可以用于更抽象的场景中。
+
+在本文中，我们将为你提供一个模板。然后，我们在本文后提供一些习题供你练习。
+
+> 在特定问题中执行 BFS 之前确定结点和边缘非常重要。通常，结点将是实际结点或是状态，而边缘将是实际边缘或可能的转换。
