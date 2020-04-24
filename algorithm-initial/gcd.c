@@ -1,145 +1,146 @@
-//Õ·×ªÏà³ı·¨ 
-
- int gcd(int a,int b)
-
- { 
-     if(a%b==0)
-     return b;
-         else;
-         return gcd(b,a%b);
- }
+#include <stdio.h>
 
 
-//Çî¾Ù·¨
+//è¾—è½¬ç›¸é™¤æ³• 
+int gcd(int a,int b){ 
+    if(a%b==0)
+        return b;
+    else
+        return gcd(b,a%b);
+}
 
- int divisor (int a, int b) //×Ô¶¨Òåº¯ÊıÇóÁ½ÊıµÄ×î´ó¹«Ô¼Êı
 
- {
-      int  temp;//¶¨ÒåÕûĞÍ±äÁ¿
-     temp=(a>b)?b:a;//²ÉÖÖÌõ¼şÔËËã±í´ïÊ½Çó³öÁ½¸öÊıÖĞµÄ×îĞ¡Öµ
-     while(temp>0)
+#if 0
 
-      {
-              if(a%temp==0&&b%temp==0)//Ö»ÒªÕÒµ½Ò»¸öÊıÄÜÍ¬Ê±±»a,bËùÕû³ı£¬ÔòÖĞÖ¹Ñ­»·
-              break;
-              temp--;//Èç²»Âú×ãifÌõ¼şÔò±äÁ¿×Ô¼õ£¬Ö±µ½ÄÜ±»a,bËùÕû³ı 
-      } 
-     return (temp);//·µ»ØÂú×ãÌõ¼şµÄÊıµ½Ö÷µ÷º¯Êı´¦ 
-  } 
+//ç©·ä¸¾æ³•
+int divisor (int a, int b) //è‡ªå®šä¹‰å‡½æ•°æ±‚ä¸¤æ•°çš„æœ€å¤§å…¬çº¦æ•°
+{
+    int  temp;//å®šä¹‰æ•´å‹å˜é‡
+    temp=(a>b)?b:a;//é‡‡ç§æ¡ä»¶è¿ç®—è¡¨è¾¾å¼æ±‚å‡ºä¸¤ä¸ªæ•°ä¸­çš„æœ€å°å€¼
+    while(temp>0)
 
-//¸üÏà¼õËğ·¨
- int gcd2(int m,int n)
- {
-     int i=0,temp,x;
-     while(m%2==0&&n%2==0)//ÅĞ¶ÏmºÍnÄÜ±»¶àÉÙ¸ö2Õû³ı
     {
-         m/=2;
-         n/=2;
-         i+=1;
+        if(a%temp==0&&b%temp==0)//åªè¦æ‰¾åˆ°ä¸€ä¸ªæ•°èƒ½åŒæ—¶è¢«a,bæ‰€æ•´é™¤ï¼Œåˆ™ä¸­æ­¢å¾ªç¯
+            break;
+        temp--;//å¦‚ä¸æ»¡è¶³ifæ¡ä»¶åˆ™å˜é‡è‡ªå‡ï¼Œç›´åˆ°èƒ½è¢«a,bæ‰€æ•´é™¤ 
     } 
-     if(m<n)//m±£´æ´óµÄÖµ
-   {
+    return (temp);//è¿”å›æ»¡è¶³æ¡ä»¶çš„æ•°åˆ°ä¸»è°ƒå‡½æ•°å¤„ 
+} 
+
+//æ›´ç›¸å‡æŸæ³•
+int gcd2(int m,int n)
+{
+    int i=0,temp,x;
+    while(m%2==0&&n%2==0)//åˆ¤æ–­må’Œnèƒ½è¢«å¤šå°‘ä¸ª2æ•´é™¤
+    {
+        m/=2;
+        n/=2;
+        i+=1;
+    } 
+    if(m<n)//mä¿å­˜å¤§çš„å€¼
+    {
         temp=m;
         m=n;
         n=temp;
-   } 
-     while(x)
-   {
+    } 
+    while(x)
+    {
         x=m-n;
         m=(n>x)?n:x;
         n=(n<x)?n:x;
         if(n==(m-n))
-        break;
-   }
+            break;
+    }
     if(i==0)
-    return n;
-        else
+        return n;
+    else
         return (int) pow(2,i)*n;
-  } 
+} 
 
-  //SteinËã·¨
-   int Stein( unsigned int x, unsigned int y )
-  /* return the greatest common divisor of x and y */
-   {
-        int factor = 0;
-        int temp;
-        if ( x < y )
-        {
-                temp = x;
-                x = y;
-                y = temp;
+//Steinç®—æ³•
+int Stein( unsigned int x, unsigned int y )
+    /* return the greatest common divisor of x and y */
+{
+    int factor = 0;
+    int temp;
+    if ( x < y )
+    {
+        temp = x;
+        x = y;
+        y = temp;
+    }
+    if ( 0 == y )
+    {
+        return 0;
+    }
+    while ( x != y )
+    {
+        if ( x & 0x1 )
+        {/* when x is odd */
+            if ( y & 0x1 )
+            {/* when x and y are both odd */
+                y = ( x - y ) >> 1;
+                x -= y;
+            }
+            else
+            {/* when x is odd and y is even */
+                y >>= 1;
+            }
         }
-        if ( 0 == y )
-        {
-                return 0;
-        }
-        while ( x != y )
-        {
-                if ( x & 0x1 )
-                {/* when x is odd */
-                        if ( y & 0x1 )
-                        {/* when x and y are both odd */
-                                y = ( x - y ) >> 1;
-                                x -= y;
-                        }
-                        else
-                        {/* when x is odd and y is even */
-                                y >>= 1;
-                        }
+        else
+        {/* when x is even */
+            if ( y & 0x1 )
+            {/* when x is even and y is odd */
+                x >>= 1;
+                if ( x < y )
+                {
+                    temp = x;
+                    x = y;
+                    y = temp;
                 }
-                else
-                {/* when x is even */
-                        if ( y & 0x1 )
-                        {/* when x is even and y is odd */
-                                x >>= 1;
-                                if ( x < y )
-                                {
-                                        temp = x;
-                                        x = y;
-                                        y = temp;
-                                }
-                        }
-                        else
-                        {/* when x and y are both even */
-                                x >>= 1;
-                                y >>= 1;
-                                ++factor;
-                        }
-                }
+            }
+            else
+            {/* when x and y are both even */
+                x >>= 1;
+                y >>= 1;
+                ++factor;
+            }
         }
-        return ( x << factor );
+    }
+    return ( x << factor );
 }
 
 
 int main()
 {
-      int i;     
-      int a[30];
-      for(i=0;i<30;i++)
-     {
-             a[i]=rand()%100 + 1;
-             printf("%d ",a[i]);
-      }
-       printf("\n");
-       int b[30];
-       for(i=0;i<30;i++)
-      {
-         b[i]=rand()%100 + 1;
-         printf("%d ",b[i]);
-      }
-      printf("\n");
-      clock_t start,finish;
-      double dur;
-      start= clock();
-      for(i=0;i<30;i++)
+    int i;     
+    int a[30];
+    for(i=0;i<30;i++)
     {
-        //printf("Õ·×ªÏà³ı·¨ËùµÃ×î´ó¹«Ô¼ÊıÎª£º%d\n",gcd(a[i],b[i]));
-        //printf("Çî¾Ù·¨ËùµÃ×î´ó¹«Ô¼ÊıÎª£º%d\n",divisor(a[i],b[i]));
-          printf("¸üÏà¼õËğ·¨ËùµÃ×î´ó¹«Ô¼ÊıÎª£º%d\n",gcd2(a[i],b[i]));
-        //printf("SteinËã·¨ËùµÃ×î´ó¹«Ô¼ÊıÎª£º%d\n",Stein(a[i],b[i]));
+        a[i]=rand()%100 + 1;
+        printf("%d ",a[i]);
     }
- finish=clock();
- dur=(double)(finish-start)/CLOCKS_PER_SEC;
- printf("ÔËĞĞËùÓÃµÄÊ±¼äÎª£º%lf s\n",dur); 
+    printf("\n");
+    int b[30];
+    for(i=0;i<30;i++)
+    {
+        b[i]=rand()%100 + 1;
+        printf("%d ",b[i]);
+    }
+    printf("\n");
+    clock_t start,finish;
+    double dur;
+    start= clock();
+    for(i=0;i<30;i++)
+    {
+        //printf("è¾—è½¬ç›¸é™¤æ³•æ‰€å¾—æœ€å¤§å…¬çº¦æ•°ä¸ºï¼š%d\n",gcd(a[i],b[i]));
+        //printf("ç©·ä¸¾æ³•æ‰€å¾—æœ€å¤§å…¬çº¦æ•°ä¸ºï¼š%d\n",divisor(a[i],b[i]));
+        printf("æ›´ç›¸å‡æŸæ³•æ‰€å¾—æœ€å¤§å…¬çº¦æ•°ä¸ºï¼š%d\n",gcd2(a[i],b[i]));
+        //printf("Steinç®—æ³•æ‰€å¾—æœ€å¤§å…¬çº¦æ•°ä¸ºï¼š%d\n",Stein(a[i],b[i]));
+    }
+    finish=clock();
+    dur=(double)(finish-start)/CLOCKS_PER_SEC;
+    printf("è¿è¡Œæ‰€ç”¨çš„æ—¶é—´ä¸ºï¼š%lf s\n",dur); 
     return 0;
- }
+}
+#endif
