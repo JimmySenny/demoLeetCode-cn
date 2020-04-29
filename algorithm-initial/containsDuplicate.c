@@ -22,10 +22,20 @@ int containsDuplicate(int* nums, int numsSize){
     return false;
 }
 
+extern int bubbleSort( int* nums, int numsSize );
+
 /*
  * 排序后处理
  */
 int containsDuplicate1(int* nums, int numsSize){
+    
+    bubbleSort( nums, numsSize );
+
+    for( int i = 0; i < numsSize - 1; i++ ){
+        if( nums[i] == nums[i+1] ){
+            return true;
+        }
+    }
     
     return false;
 }
