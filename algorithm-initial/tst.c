@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-extern int containsDuplicate(int* nums, int numsSize);
+#include "include/algorithm_initial.h"
+
 extern void quickSort(int* nums, int numsSize, int l, int r );
 
 int main(int argc, char* argv[]){
@@ -21,7 +22,7 @@ int nums[] = { -24500,-24499,-24498,-24497,-24496,-24495,-24494,-24493,-24492,-2
     */
 
     printf( "stdbool true[%d]false[%d]\n", true, false );
-    printf( "containsDuplicate[%d]\n", containsDuplicate(nums, length));
+    printf( "containsDuplicate[%d]\n", containsDuplicate2(nums, length));
 
     return 0;
 }
