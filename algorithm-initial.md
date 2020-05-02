@@ -155,9 +155,7 @@ for (int i = 0; i < len; i++) {
 
 ## 存在重复元素containsDuplicate
 
-
-
-### tags:
+### tags: 排序，搜索（查找）,哈希表
 
 给定一个整数数组，判断是否存在重复元素。
 
