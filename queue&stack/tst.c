@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <string.h>
+#include "include/queue.h"
+
 
 extern int numIsland( char** grid, int gridSize, int* gridColSize );
 
