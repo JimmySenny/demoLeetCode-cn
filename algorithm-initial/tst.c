@@ -1,9 +1,15 @@
-#include <stdio.h>
-#include <stdbool.h>
-
 #include "include/algorithm_initial.h"
 
 extern void quickSort(int* nums, int numsSize, int l, int r );
+
+void printNums( int * nums, int numsSize ){
+    printf( "[" );
+    for( int i = 0; i < numsSize; i++ ){
+        printf( "%d ", nums[i] );
+    }
+    printf( "]\n" );
+    return;
+}
 
 int main(int argc, char* argv[]){
 //    int nums[] = {1,2,3,1};
@@ -14,12 +20,16 @@ int main(int argc, char* argv[]){
 //    int nums[] = {4,1,2,1,2};
 //    int nums1[] = {1,2,2,1};
 //    int nums2[] = {2,2};
-    int nums1[] = {4,9,5};
-    int nums2[] = {9,4,9,8,4};
+//    int nums1[] = {4,9,5};
+//    int nums2[] = {9,4,9,8,4};
+//    int nums1[] = {-2147483648,1,2,3};
+//    int nums2[] = {1,-2147483648,-2147483648};
+//    int nums[] = {0, 1, 0, 3, 12 };
+    int nums[] = {1, 0, 1};
 
-//    int length = sizeof(nums)/sizeof(nums[0]);
-    int length1 = sizeof(nums1)/sizeof(nums1[0]);
-    int length2 = sizeof(nums2)/sizeof(nums2[0]);
+    int length = sizeof(nums)/sizeof(nums[0]);
+//   int length1 = sizeof(nums1)/sizeof(nums1[0]);
+//   int length2 = sizeof(nums2)/sizeof(nums2[0]);
     /*
     quickSort( nums, length, 0, length - 1);
 
@@ -34,14 +44,17 @@ int main(int argc, char* argv[]){
 //    printf( "containsDuplicate[%d]\n", containsDuplicate2(nums, length));
 //    printf( "singleNumber[%d]\n", singleNumber3(nums, length));
     int len;
-    int * nums = NULL;
-    nums = intersect(nums1, length1, nums2, length2, &len );
+//    int * nums = NULL;
+//    nums = intersect1(nums1, length1, nums2, length2, &len );
 
-    printf( " [ " );
+    moveZeroes1(nums, length);
+    len = length;
+
+    printf( "[ " );
     for( int i = 0; i < len; i++ ){
         printf( " %d ", nums[i] );
     }
-    printf( "]\n" );
+    printf( " ]\n" );
 
     return 0;
 }

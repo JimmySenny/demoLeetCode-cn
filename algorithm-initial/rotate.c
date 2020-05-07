@@ -1,13 +1,5 @@
-#include <stdio.h>
+#include "include/algorithm_initial.h"
 
-void printNums( int * nums, int numsSize ){
-    printf( "[" );
-    for( int i = 0; i < numsSize; i++ ){
-        printf( "%d ", nums[i] );
-    }
-    printf( "]\n" );
-    return;
-}
 
 /*
  * 暴力解法
