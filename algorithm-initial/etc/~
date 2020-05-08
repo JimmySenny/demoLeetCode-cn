@@ -1,0 +1,25 @@
+WORKDIR    = ~/demoLeetCode-cn/algorithm-initial/
+CC         = gcc
+CFLAG      = -g -Wall -fPIC -I${WORKDIR}/include
+#LD        = gcc
+
+SHLIBEXT   = .so
+SHLIBLDOPT = -shared -fPIC
+
+AR         = ar
+AROPT      = -curv
+
+# ranlib 更新静态库的符号索引表
+RANLIB     = ranlib
+
+MAKE       = make
+
+BINDIR     = ${WORKDIR}/bin
+LIBDIR     = ${WORKDIR}/lib
+
+
+.SUFFIXES: .c .o
+
+.c.o:
+    ${CC} ${CFLAGS} -o $@ -c $<
+    

@@ -1,4 +1,4 @@
-#include "include/algorithm_initial.h"
+#include "alg_array.h"
 
 
 /*
@@ -53,8 +53,11 @@ void rotate1( int* nums, int numsSize, int k ){
     return;
 }
 
+
+extern int gcd(int a,int b);
+
 void rotate2( int* nums, int numsSize, int k ){
-    int i, j, m, size, temp1, temp2 = 0;
+    int i, j, size, temp1, temp2 = 0;
 
     if( NULL == nums || 2 > numsSize ||  0 == k || k == numsSize ){
         return;
@@ -78,24 +81,4 @@ void rotate2( int* nums, int numsSize, int k ){
     }
 
     return;
-}
-
-int main( int argc, char * argv[]){
-    int nums[] = {1, 2, 3, 4, 5, 6};
-    //    int nums[] = {-1,-100,3,99};
-
-    if( argc != 2 ){
-        printf( "USAGE arg k" );
-        exit(-1);
-    }
-    int k = atoi(argv[1]);
-    printf( "k[%d]\n", k );
-
-    printNums( nums, sizeof(nums)/sizeof(nums[0]) );
-
-    rotate2( nums, sizeof(nums)/sizeof(nums[0]), k );
-
-    //    printNums( nums, sizeof(nums)/sizeof(nums[0]) );
-
-    return 0;
 }

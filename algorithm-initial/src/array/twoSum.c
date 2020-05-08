@@ -1,4 +1,4 @@
-#include "include/algorithm_initial.h"
+#include "alg_array.h"
 
 /*
  * 暴力

@@ -1,4 +1,4 @@
-#include "include/algorithm_initial.h"
+#include "alg_array.h"
 
 /*
  * 数字 1-9 在每一行只能出现一次。
@@ -86,7 +86,6 @@ bool isValidSudokuSmall( char ** board, int size, char small[][9+1], int i, int 
 }
 
 bool isValidSudoku( char** board, int boardSize, int* boardColSize ){
-    bool iRet = false;
     int i = 0, j = 0;
     char row[9+1];
     char col[9+1];

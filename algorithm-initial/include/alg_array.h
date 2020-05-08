@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
+#include "alg_comm.h"
+
+extern int removeDuplicates( int* nums, int numsSize );
+
 
 extern void printNums( int * nums, int numsSize );
 

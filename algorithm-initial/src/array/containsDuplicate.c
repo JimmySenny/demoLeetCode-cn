@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-
-#include "include/hash.h"
+#include "alg_array.h"
+#include "sort.h"
+#include "hash.h"
 
 /*
  * 暴力
@@ -25,8 +23,8 @@ int containsDuplicate(int* nums, int numsSize){
     return false;
 }
 
-extern int bubbleSort( int* nums, int numsSize );
-extern int quickSort( int* nums, int numsSize, int l, int r );
+//extern int bubbleSort( int* nums, int numsSize );
+//extern int quickSort( int* nums, int numsSize, int l, int r );
 
 int compi( const void *a, const void *b ){
     const int* p = a;

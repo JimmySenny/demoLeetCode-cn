@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "alg_array.h"
 
 /*
  * 暴力
@@ -63,7 +61,7 @@ int singleNumber1( int * nums, int numsSize ){
         }
     }
 
-    return NULL;
+    return -1;
 }
 
 /*

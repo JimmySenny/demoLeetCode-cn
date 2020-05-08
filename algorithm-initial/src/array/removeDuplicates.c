@@ -1,5 +1,4 @@
-#include <stdio.h>
-
+#include "alg_array.h"
 
 int removeDuplicates( int* nums, int numsSize ){
     /*
@@ -25,18 +24,4 @@ int removeDuplicates( int* nums, int numsSize ){
        }
     }
     return j+1;
-}
-
-int main( int argc, char* argv[] ){
-    int  len = 0;
-//    int nums[10]={0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-    int nums[0]={};
-    
-    len = removeDuplicates( nums, 0  );
-
-    for( int i = 0; i < 1; i++ ){
-        printf( "[%d]\n", nums[i] );
-    }
-    
-    return 0;
 }
