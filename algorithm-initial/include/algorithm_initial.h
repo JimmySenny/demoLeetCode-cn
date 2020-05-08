@@ -21,3 +21,5 @@ extern void moveZeroes( int * nums, int numsSize );
 extern void moveZeroes1( int * nums, int numsSize );
 
 extern int* twoSum(int* nums, int numsSize, int target, int* returnSize);
+
+extern bool isValidSudoku(char** board, int boardSize, int* boardColSize);

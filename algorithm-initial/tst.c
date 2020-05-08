@@ -25,7 +25,9 @@ int main(int argc, char* argv[]){
 //    int nums1[] = {-2147483648,1,2,3};
 //    int nums2[] = {1,-2147483648,-2147483648};
 //    int nums[] = {0, 1, 0, 3, 12 };
-    int nums[] = {1, 0, 1};
+//    int nums[] = {1, 0, 1};
+//    int nums[] = {2, 7, 11, 15};
+    int nums[] = {3,2,4};
 
     int length = sizeof(nums)/sizeof(nums[0]);
 //   int length1 = sizeof(nums1)/sizeof(nums1[0]);
@@ -47,14 +49,43 @@ int main(int argc, char* argv[]){
 //    int * nums = NULL;
 //    nums = intersect1(nums1, length1, nums2, length2, &len );
 
-    moveZeroes1(nums, length);
+//    moveZeroes1(nums, length);
+/*
     len = length;
+
+    twoSum( nums, length, 6, &len ); 
 
     printf( "[ " );
     for( int i = 0; i < len; i++ ){
         printf( " %d ", nums[i] );
     }
     printf( " ]\n" );
+*/
+    char board[][9] = { { '5','3','.','.','7','.','.','.','.' }, \
+                        { '6','.','.','1','9','5','.','.','.' }, \
+                        { '.','9','8','.','.','.','.','6','.' }, \
+                        { '8','.','.','.','6','.','.','.','3' }, \
+                        { '4','7','.','8','.','3','.','.','1' }, \
+                        { '7','.','.','.','2','.','.','.','6' }, \
+                        { '.','6','.','.','.','.','2','8','.' }, \
+                        { '.','.','.','4','1','9','.','.','5' }, \
+                        { '.','.','.','.','8','.','.','7','9' } };
+    char * pboard[9];
+    pboard[0] = board[0];
+    pboard[1] = board[1];
+    pboard[2] = board[2];
+    pboard[3] = board[3];
+    pboard[4] = board[4];
+    pboard[5] = board[5];
+    pboard[6] = board[6];
+    pboard[7] = board[7];
+    pboard[8] = board[8];
+
+    int size = 9;
+
+
+
+    printf( "[%d]\n", isValidSudoku(pboard, size, &size ) );
 
     return 0;
 }
