@@ -1,19 +1,22 @@
 include ../etc/makefile
 
-BIN_NAME = alg_array
+ALLDIRS = ${WORKDIR}/src/comm \
+		  ${WORKDIR}/src/array 
 
-OBJ_LIB  = ${WORKDIR}/lib/libalg_array.a ${WORKDIR}/lib/libalg_comm.a
-
-EXECOBJ  = ${WORKDIR}/bin/${BIN_NAME}.out
-
-LINKRULE = ${CC} -o ${EXECOBJ} ${OBJ_LIB} -L${WORKDIR}/lib -lalg_comm -lalg_array
-
-TARGETS  = ${EXECOBJ}
-
-all:${TARGETS}
-
-${EXECOBJ}: ${OBJ_LIB}
-	${LINKRULE}
+all:
+	@for subdir in ${ALLDIRS}; \
+	do \
+		cd $$subdir;\
+		echo "Makeing $$subdir"; \
+		${MAKE} ${MAKEOPT} all; \
+		echo " Done "; \
+	done
 
 clean:
-	@- rm -f {TARGETS} ${CLEANFILES} ${OBJ_LIB}
+	@for subdir in ${ALLDIRS}; \
+	do \
+		cd $$subdir;\
+		echo "Cleaning $$subdir"; \
+		${MAKE} ${MAKEOPT} clean; \
+		echo " Done "; \
+	done
