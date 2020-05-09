@@ -10,7 +10,8 @@ MODULE_OBJ  = tst_array.o \
 			  intersect.o \
 			  moveZeroes.o \
 			  twoSum.o \
-			  isValidSudoku.o 
+			  isValidSudoku.o \
+			  rotatei.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

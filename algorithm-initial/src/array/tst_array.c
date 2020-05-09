@@ -151,11 +151,67 @@ void tst_isValidSudoku( void ){
 
     return;
 }
+
+void tst_rotatei( void ){
+    /*
+    int matrix[][3] = { { 1, 2, 3 }, \
+                        { 4, 5, 6 }, \
+                        { 7, 8, 9 } };
+
+    int *pmatrix[3];
+    pmatrix[0] = matrix[0];
+    pmatrix[1] = matrix[1];
+    pmatrix[2] = matrix[2];
+    int matrixSize = 3, matrixColSize = 3;
+    
+    int matrix[][5] = { { 1, 2, 3, 4, 5 }, \
+                        { 6, 1, 2, 3, 6 }, \
+                        { 5, 8, 9, 4, 7 }, \
+                        { 4, 7, 6, 5, 8 }, \
+                        { 3, 2, 1, 0, 9 } };
+
+    int *pmatrix[5];
+    pmatrix[0] = matrix[0];
+    pmatrix[1] = matrix[1];
+    pmatrix[2] = matrix[2];
+    pmatrix[3] = matrix[3];
+    pmatrix[4] = matrix[4];
+    int matrixSize = 5, matrixColSize = 5;
+    */
+    int matrix[][6] = { { 1, 2, 3, 4, 5, 6 }, \
+                        { 0, 1, 2, 3, 4, 7 }, \
+                        { 9, 2, 1, 2, 5, 8 }, \
+                        { 8, 1, 4, 3, 6, 9 }, \
+                        { 7, 0, 9, 8, 7, 0 }, \
+                        { 6, 5, 4, 3, 2, 1 } };
+
+    int *pmatrix[6];
+    pmatrix[0] = matrix[0];
+    pmatrix[1] = matrix[1];
+    pmatrix[2] = matrix[2];
+    pmatrix[3] = matrix[3];
+    pmatrix[4] = matrix[4];
+    pmatrix[5] = matrix[5];
+    int matrixSize = 6, matrixColSize = 6;
+
+    printf( "[%d-%d]\n", sizeof(pmatrix[0]), sizeof( *pmatrix[0] ) );
+
+
+    printMatrix( pmatrix, matrixSize, matrixColSize );
+
+    rotatei( pmatrix, matrixSize, &matrixColSize );
+    
+    printMatrix( pmatrix, matrixSize, matrixColSize );
+
+    return;
+}
+
 int main(int argc, char* argv[]){
     printf( "stdbool true[%d]false[%d]\n", true, false );
 
     //quickSort( nums, length, 0, length - 1);
 
+    /*
     tst_removeDuplicates();
     tst_maxProfit();
     tst_rotate(argc, argv);
@@ -165,6 +221,8 @@ int main(int argc, char* argv[]){
     tst_moveZeroes();
     tst_twoSum();
     tst_isValidSudoku();
+    */
+    tst_rotatei();
     
 
     return 0;
