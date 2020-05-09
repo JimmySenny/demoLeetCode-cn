@@ -3,13 +3,6 @@
 /*
  * 暴力
  */
-int compi( const void * a, const void * b ){
-    const int * p = a;
-    const int * q = b;
-
-    return *p - *q;
-}
-
 int* twoSum(int * nums, int numsSize, int target, int* returnSize){
     int i = 0, j = 0, flag = false;
 

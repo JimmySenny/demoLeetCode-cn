@@ -1,0 +1,19 @@
+include ../etc/makefile
+
+BIN_NAME = alg_array
+
+OBJ_LIB  = ${WORKDIR}/lib/libalg_array.a ${WORKDIR}/lib/libalg_comm.a
+
+EXECOBJ  = ${WORKDIR}/bin/${BIN_NAME}.out
+
+LINKRULE = ${CC} -o ${EXECOBJ} ${OBJ_LIB} -L${WORKDIR}/lib -lalg_comm -lalg_array
+
+TARGETS  = ${EXECOBJ}
+
+all:${TARGETS}
+
+${EXECOBJ}: ${OBJ_LIB}
+	${LINKRULE}
+
+clean:
+	@- rm -f {TARGETS} ${CLEANFILES} ${OBJ_LIB}

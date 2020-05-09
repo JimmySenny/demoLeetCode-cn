@@ -3,12 +3,6 @@
 /*
  * 暴力
  */
-int compi( const void *a, const void *b ){
-    const int* p = a;
-    const int* q = b;
-
-    return *p - *q;
-}
 int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
     int k = 0;
     static int j = 0;

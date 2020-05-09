@@ -1,16 +1,8 @@
 include ../../etc/makefile
 
-MODULE_NAME = alg_array
-MODULE_OBJ  = tst_array.o \
-			  removeDuplicates.o \
-			  maxProfit.o \
-			  rotate.o \
-			  containsDuplicate.o \
-			  singleNumber.o \
-			  intersect.o \
-			  moveZeroes.o \
-			  twoSum.o \
-			  isValidSudoku.o 
+MODULE_NAME = alg_comm
+MODULE_OBJ  = alg_comm.o \
+			  gcd.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

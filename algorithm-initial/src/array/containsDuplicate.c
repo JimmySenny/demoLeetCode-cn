@@ -1,6 +1,4 @@
 #include "alg_array.h"
-#include "sort.h"
-#include "hash.h"
 
 /*
  * 暴力
@@ -26,13 +24,6 @@ int containsDuplicate(int* nums, int numsSize){
 //extern int bubbleSort( int* nums, int numsSize );
 //extern int quickSort( int* nums, int numsSize, int l, int r );
 
-int compi( const void *a, const void *b ){
-    const int* p = a;
-    const int* q = b;
-
-    return *p - *q;
-}
-
 /*
  * 排序后处理
  */
@@ -56,6 +47,7 @@ int containsDuplicate1(int* nums, int numsSize){
 /*
  * 哈希处理
  */
+/*
 int containsDuplicate2(int* nums, int numsSize){
     int iRet = false;
     struHashTable table;
@@ -74,3 +66,4 @@ int containsDuplicate2(int* nums, int numsSize){
 
     return iRet;
 }
+*/

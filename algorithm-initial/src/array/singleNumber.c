@@ -31,12 +31,6 @@ int singleNumber( int * nums, int numsSize ){
 /*
  * 排序后比较
  */
-int compi( const void *a, const void *b ){
-    const int* p = a;
-    const int* q = b;
-
-    return *p - *q;
-}
 int singleNumber1( int * nums, int numsSize ){
 
     if( numsSize < 2 ){

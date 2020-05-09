@@ -6,9 +6,9 @@ extern void quickSort(int* nums, int numsSize, int l, int r );
 void tst_removeDuplicates( void ){
     //int nums[]={1, 1, 2};
     int nums[10]={0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-    int len = 0;
+    int len = sizeof(nums)/sizeof(nums[0]);
 
-    len = removeDuplicates( nums, strlen(nums) );
+    len = removeDuplicates( nums, len );
     printNums( nums, len );
 
     return;
@@ -55,7 +55,7 @@ void tst_containsDuplicate( void ){
     printNums( nums, length );
 
     printf( "containsDuplicate[%d]\n", containsDuplicate(nums, length));
-    printf( "containsDuplicate[%d]\n", containsDuplicate2(nums, length));
+    printf( "containsDuplicate[%d]\n", containsDuplicate1(nums, length));
 
     return;
 }
@@ -80,7 +80,7 @@ void tst_intersect( void ){
 //    int nums1[] = {4,9,5};
 //    int nums2[] = {9,4,9,8,4};
     int nums1[] = {-2147483648,1,2,3};
-    int nums2[] = {1,-2147483648,-2147483648};int len;
+    int nums2[] = {1,-2147483648,-2147483648};
 
     int length1 = sizeof(nums1)/sizeof(nums1[0]);
     int length2 = sizeof(nums2)/sizeof(nums2[0]);

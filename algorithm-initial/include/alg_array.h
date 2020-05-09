@@ -2,8 +2,12 @@
 
 extern int removeDuplicates( int* nums, int numsSize );
 
+extern int maxProfit( int* prices, int pricesSize );
+extern int maxProfit1( int* prices, int pricesSize );
 
-extern void printNums( int * nums, int numsSize );
+extern void rotate( int* nums, int numsSize, int k );
+extern void rotate1( int* nums, int numsSize, int k );
+extern void rotate2( int* nums, int numsSize, int k );
 
 extern int containsDuplicate(int* nums, int numsSize);
 extern int containsDuplicate1(int* nums, int numsSize);
