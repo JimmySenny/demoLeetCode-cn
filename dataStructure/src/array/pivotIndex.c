@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "ds_array.h"
 
 
 int pivotIndex(int* nums, int numsSize){
@@ -36,12 +36,4 @@ int pivotIndex(int* nums, int numsSize){
     }
 
     return -1;
-}
-
-int main( int argc, char * argv[] ){
-	int a[6] = { -1, -1, -1, -1, -1, -1};
-	
-	pivotIndex( a, 6);
-
-    return 0;
 }

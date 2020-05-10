@@ -1,4 +1,4 @@
-#include "../include/alg_array.h"
+#include "alg_array.h"
 
 extern void quickSort(int* nums, int numsSize, int l, int r );
 

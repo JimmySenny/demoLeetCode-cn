@@ -1,4 +1,4 @@
-#include "../include/alg_tst.h"
+#include "alg_tst.h"
 
 
 int main(int argc, char* argv[]){

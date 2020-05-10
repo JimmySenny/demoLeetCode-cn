@@ -16,4 +16,4 @@ ${EXECOBJ}: ${OBJ_LIB}
 	${LINKRULE}
 
 clean:
-	@- rm -f {TARGETS} ${CLEANFILES}
+	@- rm -f ${TARGETS} ${CLEANFILES}

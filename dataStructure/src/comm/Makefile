@@ -1,8 +1,7 @@
-include ../../etc/makefile
+include ../../etc/Makefile
 
-MODULE_NAME = alg_tst
-MODULE_OBJ  = alg_tst.o \
-			        tst_array.o
+MODULE_NAME = ds_comm
+MODULE_OBJ  = ds_comm.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

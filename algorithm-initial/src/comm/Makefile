@@ -16,4 +16,4 @@ ${MODULE_LIB}: ${MODULE_OBJ}
 # $@ 表示规则中的目标文件集。在模式规则中，如果有多个目标，那么，"$@"就是匹配于目标中模式定义的集合。
 
 clean:
-	@- rm -f {TARGETS} ${CLEANFILES}
+	@- rm -f ${TARGETS} ${CLEANFILES}

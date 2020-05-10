@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "ds_array.h"
 
 
 int dominantIndex( int * nums, int numsSize ){
@@ -20,8 +20,4 @@ int dominantIndex( int * nums, int numsSize ){
         }
     }
     return -1;
-}
-
-int main( int argc, char * argv[] ){
-    return 0;
 }

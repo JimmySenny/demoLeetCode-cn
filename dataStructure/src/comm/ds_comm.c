@@ -1,4 +1,4 @@
-#include "alg_comm.h"
+#include "ds_comm.h"
 
 void printNums( int * nums, int numsSize ){
     printf( "[" );

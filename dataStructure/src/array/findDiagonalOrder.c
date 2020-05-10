@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "ds_array.h"
 
 /**
  ** Note: The returned array must be malloced, assume caller calls free().

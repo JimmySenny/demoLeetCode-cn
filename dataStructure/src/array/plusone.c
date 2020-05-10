@@ -30,23 +30,6 @@ int* plusOne(int* digits, int digitsSize, int* returnSize){
     return redigits;
 }
 
-int main( int argc, char * argv[]){
-    int digits[4] = { 1, 9, 9, 9 };
-//    int digits[3] = { 9, 9, 9 };
-    int* redigits = NULL;
-    int returnSize = 0;
-
-    redigits = plusOne( digits, sizeof(digits)/sizeof(int), &returnSize );
-
-    for( int i = 0; i < returnSize; i++ ){
-        printf( " [%d] ", redigits[i] );
-    }
-    printf( "\n" ); 
-//    free(redigits);
-
-    return 0;
-}
-
 int* plusOne1(int* digits, int digitsSize, int* returnSize){
     if( digits == NULL ){
         *returnSize = 0;
