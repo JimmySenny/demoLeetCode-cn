@@ -17,13 +17,18 @@ void rotatei(int** matrix, int matrixSize, int* matrixColSize){
         for( j = i, k = 0; k < len - 1; j++, k++ ){
             //(i,j) -> (j,matrixSize-1-i) -> 
             //( matrixSize-1-i-j,i) -> (matixSize-1-j,matrixSize-1-i-j) ->
-            //tmp = matrix[i][j];
-            /* 每次旋转4个点
+            // 每次旋转4个点
+            printf( " %d ", matrix[i][j] );
+            printf( " %d ", matrix[j][length] );
+            printf( " %d ", matrix[length][length-k] );
+            printf( " %d \n", matrix[length-k][i] );
 
-            for( k = j, k < 4 ; k++ ){
-                //matrix[j][k]
-            }
-            */
+            tmp                      = matrix[i][j];
+            matrix[i][j]             = matrix[length-k][i];
+            matrix[length-k][i]      = matrix[length][length-k];
+            matrix[length][length-k] = matrix[j][length];
+            matrix[j][length]        = tmp;
+
             printf( " %d ", matrix[i][j] );
             printf( " %d ", matrix[j][length] );
             printf( " %d ", matrix[length][length-k] );

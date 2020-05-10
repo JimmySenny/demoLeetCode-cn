@@ -1,7 +1,8 @@
 include ../etc/makefile
 
 ALLDIRS = ${WORKDIR}/src/comm \
-		  ${WORKDIR}/src/array 
+		  ${WORKDIR}/src/array \
+		  ${WORKDIR}/src/tst 
 
 all:
 	@for subdir in ${ALLDIRS}; \
