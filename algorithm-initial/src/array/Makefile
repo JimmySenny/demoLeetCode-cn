@@ -1,4 +1,4 @@
-include ../../etc/makefile
+include ../../etc/Makefile
 
 MODULE_NAME = alg_array
 MODULE_OBJ  = removeDuplicates.o \

@@ -1,4 +1,4 @@
-include ../etc/makefile
+include ../etc/Makefile
 
 ALLDIRS = ${WORKDIR}/src/comm \
 		  ${WORKDIR}/src/array \

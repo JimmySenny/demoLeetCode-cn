@@ -1,4 +1,4 @@
-include ../etc/makefile
+include ../etc/Makefile
 
 BIN_NAME = alg_tst
 
