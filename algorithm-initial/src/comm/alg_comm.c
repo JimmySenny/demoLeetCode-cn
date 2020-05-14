@@ -9,6 +9,15 @@ void printNums( int * nums, int numsSize ){
     return;
 }
 
+void printChars( char * s, int sSize ){
+    printf( "[" );
+    for( int i = 0; i < sSize; i++ ){
+        printf( "%c ", s[i] );
+    }
+    printf( "]\n" );
+    return;
+}
+
 void printMatrix( int ** matrix, int row, int col ){
     int i = 0, j = 0;
 

@@ -11,3 +11,6 @@ extern void tst_moveZeroes( void );
 extern void tst_twoSum( void );
 extern void tst_isValidSudoku( void );
 extern void tst_rotatei( void );
+
+/* string */
+extern void tst_reverseString( void );

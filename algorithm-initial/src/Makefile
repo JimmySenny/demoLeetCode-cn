@@ -2,6 +2,7 @@ include ../etc/Makefile
 
 ALLDIRS = ${WORKDIR}/src/comm \
 		  ${WORKDIR}/src/array \
+		  ${WORKDIR}/src/string \
 		  ${WORKDIR}/src/tst 
 
 all:

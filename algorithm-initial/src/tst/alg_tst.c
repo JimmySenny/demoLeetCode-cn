@@ -6,7 +6,7 @@ int main(int argc, char* argv[]){
 
     //quickSort( nums, length, 0, length - 1);
 
-    /*
+    /* array
     tst_removeDuplicates();
     tst_maxProfit();
     tst_rotate(argc, argv);
@@ -16,8 +16,13 @@ int main(int argc, char* argv[]){
     tst_moveZeroes();
     tst_twoSum();
     tst_isValidSudoku();
-    */
     tst_rotatei();
+    */
+
+    /*
+     * string
+     */
+    tst_reverseString();
     
 
     return 0;
