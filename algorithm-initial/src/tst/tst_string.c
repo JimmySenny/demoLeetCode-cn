@@ -12,3 +12,33 @@ void tst_reverseString( void ){
 
     return;
 }
+
+/*
+ * 暴力
+ */
+void tst_reverse( void ){
+//    int x = 123;
+//    int x = -123;
+//    int x = -2147483648;
+//    int x = 2147483647;
+    int x = 1534236469;
+
+    printf( "y[%d]\n", reverse( x ) );
+
+    return;
+}
+
+void tst_firstUniqChar( void ){
+//    char s[] = "leetcode";
+//    char s[] = "loveleetcode";
+//    char s[] = "llllll";
+    char s[] = "abcdabcdabcd";
+
+    printf( "return[%d]\n", firstUniqChar( s ) );
+    return;
+}
+
+void tst_isAnagram( void ){
+
+    return;
+}

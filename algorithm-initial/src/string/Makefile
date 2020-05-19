@@ -1,7 +1,10 @@
 include ../../etc/Makefile
 
 MODULE_NAME = alg_string
-MODULE_OBJ  = reverseString.o
+MODULE_OBJ  = reverseString.o \
+			  reverse.o \
+			  firstUniqChar.o \
+			  isAnagram.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

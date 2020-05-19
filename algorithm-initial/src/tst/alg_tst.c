@@ -21,9 +21,11 @@ int main(int argc, char* argv[]){
 
     /*
      * string
-     */
     tst_reverseString();
-    
+    tst_reverse();
+    tst_firstUniqChar();
+     */
+    tst_isAnagram();
 
     return 0;
 }

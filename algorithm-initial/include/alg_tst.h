@@ -14,3 +14,7 @@ extern void tst_rotatei( void );
 
 /* string */
 extern void tst_reverseString( void );
+extern void tst_reverse( void );
+extern void tst_firstUniqChar( void );
+extern void tst_isAnagram( void );
+
