@@ -4,7 +4,10 @@ MODULE_NAME = alg_string
 MODULE_OBJ  = reverseString.o \
 			  reverse.o \
 			  firstUniqChar.o \
-			  isAnagram.o
+			  isAnagram.o \
+			  isPalindrome.o \
+			  myAtoi.o \
+			  strStr.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

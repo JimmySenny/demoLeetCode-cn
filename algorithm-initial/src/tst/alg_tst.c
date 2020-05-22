@@ -24,8 +24,11 @@ int main(int argc, char* argv[]){
     tst_reverseString();
     tst_reverse();
     tst_firstUniqChar();
-     */
     tst_isAnagram();
+    tst_isPalindrome();
+    tst_myAtoi();
+     */
+    tst_strStr();
 
     return 0;
 }
