@@ -72,5 +72,10 @@ void tst_myAtoi( void ){
 }
 
 void tst_strStr( void ){
+    char haystack[] = "hello";
+    char needle[] = "ll";
+
+    printf( "strStr[%d]\n", strStr( haystack, needle ) );
+
     return;
 }
