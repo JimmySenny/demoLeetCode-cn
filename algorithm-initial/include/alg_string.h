@@ -14,3 +14,8 @@ extern bool isPalindrome(char * s);
 extern int myAtoi(char * str);
 
 extern int strStr(char * haystack, char * needle);
+extern int strStr1(char * haystack, char * needle);
+
+extern char * countAndSay(int n);
+
+extern char * longestCommonPrefix(char ** strs, int strsSize);

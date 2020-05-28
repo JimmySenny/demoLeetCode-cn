@@ -27,8 +27,9 @@ int main(int argc, char* argv[]){
     tst_isAnagram();
     tst_isPalindrome();
     tst_myAtoi();
-     */
     tst_strStr();
+     */
+    tst_longestCommonPrefix();
 
     return 0;
 }

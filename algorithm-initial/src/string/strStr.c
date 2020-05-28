@@ -7,7 +7,11 @@ int strStr(char * haystack, char * needle){
     int idx = -1;
     int i = 0, j = 0, k = 0;
 
-    if( 0 == strlen( haystack ) ||  0 == strlen( needle ) ){
+    if( NULL == haystack || NULL == needle ){
+        return 0;
+    }
+
+    if( 0 == strlen( needle ) ){
         return 0;
     }
 
@@ -25,4 +29,29 @@ int strStr(char * haystack, char * needle){
     }
 
     return  idx;
+}
+
+/*
+ * 滑动窗口
+ */
+int strStr1( char * haystack, char * needle ){
+    int idx = -1;
+    int len = strlen( haystack );
+    int sublen = strlen( needle );
+    int i = 0;
+
+    if( 0 == sublen ){
+        return 0;
+    }
+
+    for( i = 0; i <= len - sublen; i++ ){
+        if( haystack[i] == needle[0] ) { // 首位相等才比较串
+            if( 0 == strncmp( haystack + i, needle, sublen ) ){
+                idx = i;
+                break;
+            }
+        }
+    }
+
+    return idx;
 }

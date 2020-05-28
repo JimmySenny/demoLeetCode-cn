@@ -7,7 +7,9 @@ MODULE_OBJ  = reverseString.o \
 			  isAnagram.o \
 			  isPalindrome.o \
 			  myAtoi.o \
-			  strStr.o
+			  strStr.o \
+			  countAndSay.o \
+			  longestCommonPrefix.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

@@ -20,3 +20,5 @@ extern void tst_isAnagram( void );
 extern void tst_isPalindrome( void );
 extern void tst_myAtoi( void );
 extern void tst_strStr( void );
+extern void tst_countAndSay( void );
+extern void tst_longestCommonPrefix( void );
