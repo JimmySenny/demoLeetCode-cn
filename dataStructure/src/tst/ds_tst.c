@@ -7,8 +7,13 @@ int main( int argc, char * argv[] ){
     tst_pivotIndex();
     tst_dominantIndex();
     tst_plusOne();
+    tst_searchInsert();
      */
+    tst_merge();
+
+    /*
     tst_findDiagonalOrder( );
+    */
 
     /*
      * queue

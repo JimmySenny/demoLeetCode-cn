@@ -25,6 +25,21 @@ void tst_plusOne( void ){
     return;
 }
 
+void tst_searchInsert( void ){
+    int nums[] = { 1, 3, 5, 6 };
+    int target = 7;
+
+    printf( "indx[%d]\n", searchInsert( nums, 4, target ) );
+
+    printf( "indx[%d]\n", searchInsert1( nums, 4, target ) );
+
+    return;
+}
+
+void tst_merge( void ){
+    return;
+}
+
 void tst_findDiagonalOrder( void ){
     int returnSize = -1;
     int matrix[][3] = { { 1, 2, 3 }, \
