@@ -9,11 +9,12 @@ int main( int argc, char * argv[] ){
     tst_plusOne();
     tst_searchInsert();
      */
-    tst_merge();
+    //tst_merge();
 
     /*
     tst_findDiagonalOrder( );
     */
+    tst_setZeroes();
 
     /*
      * queue

@@ -6,7 +6,8 @@ MODULE_OBJ  = pivotIndex.o \
 			  plusone.o \
 			  searchInsert.o \
 			  findDiagonalOrder.o \
-			  merge.o
+			  merge.o \
+			  setZeroes.o
 
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
