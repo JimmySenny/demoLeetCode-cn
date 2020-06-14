@@ -1,6 +1,5 @@
 #include "alg_string.h"
 
-
 void tst_reverseString( void ){
     char s[10]={"hello"};
 
@@ -76,6 +75,40 @@ void tst_strStr( void ){
     char needle[] = "ll";
 
     printf( "strStr[%d]\n", strStr( haystack, needle ) );
+
+    return;
+}
+
+void tst_countAndSay( void ){
+
+    return;
+}
+
+void tst_longestCommonPrefix( void ){
+    /*
+    char matrix[][10] = { "flower", \
+                          "flow", \
+                          "flight" };
+    char * pm[3];
+
+    pm[0] = matrix[0];
+    pm[1] = matrix[1];
+    pm[2] = matrix[2];
+    */
+
+    /*
+    char m[][1] = { '\0' };
+    char *pm[1];
+
+    pm[0] = m[0];
+    */
+
+    char m[][32] = { "", "" };
+    char *pm[2];
+    pm[0] = m[0];
+    pm[1] = m[1];
+
+    printf( "longestCommonPrefix[%s]\n", longestCommonPrefix( pm, 2 ) );
 
     return;
 }
