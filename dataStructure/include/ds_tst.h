@@ -6,3 +6,5 @@ extern void tst_plusOne( void );
 
 extern void tst_circularQueueEnQueue( void );
 extern void tst_numIslands( void );
+
+extern void tst_findDiagonalOrder( void );

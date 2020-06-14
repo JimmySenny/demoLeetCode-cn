@@ -9,8 +9,5 @@ int findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* ret
     for( i=0;i<m*n;i++){
     }
 
-}
-
-int main(int argc, char *argv[]){
-    return 0
+    return 0;
 }
