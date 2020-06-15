@@ -12,9 +12,14 @@ int main( int argc, char * argv[] ){
     //tst_merge();
 
     /*
+    tst_setZeroes();
     tst_findDiagonalOrder( );
     */
-    tst_setZeroes();
+
+    /*
+     * string
+     */
+    tst_longestPalindrome( );
 
     /*
      * queue

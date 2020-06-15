@@ -1,10 +1,7 @@
-include ../../etc/makefile
+include ../../etc/Makefile
 
-MODULE_NAME = ds_tst
-MODULE_OBJ  = ds_tst.o \
-					tst_array.o \
-					tst_string.o \
-					tst_queue.o
+MODULE_NAME = ds_string
+MODULE_OBJ  = longestPalindrome.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 
