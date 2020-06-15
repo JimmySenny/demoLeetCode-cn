@@ -12,4 +12,3 @@ extern int** merge(int** intervals, int intervalsSize, int* intervalsColSize, in
 extern void setZeroes(int** matrix, int matrixSize, int* matrixColSize);
 extern int findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize);
 
-/* */
