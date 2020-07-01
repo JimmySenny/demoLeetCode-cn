@@ -14,6 +14,8 @@ extern void tst_findDiagonalOrder( void );
 
 /* string */
 extern void tst_longestPalindrome( void );
+extern void tst_longestPalindrome2( void );
+extern void tst_reverseWords( void );
 
 extern void tst_circularQueueEnQueue( void );
 extern void tst_numIslands( void );

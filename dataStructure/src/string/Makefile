@@ -1,7 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = ds_string
-MODULE_OBJ  = longestPalindrome.o
+MODULE_OBJ  = longestPalindrome.o reverseWords.o
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

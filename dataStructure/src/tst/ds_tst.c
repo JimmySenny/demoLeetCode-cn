@@ -18,8 +18,9 @@ int main( int argc, char * argv[] ){
 
     /*
      * string
-     */
     tst_longestPalindrome( );
+     */
+    tst_reverseWords( );
 
     /*
      * queue
