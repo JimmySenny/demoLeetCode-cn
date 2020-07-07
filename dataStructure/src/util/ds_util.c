@@ -12,3 +12,14 @@ void reverseNums( int * nums, int numsSize ){
     return;
 }
 
+void reverseChars( char * str ){
+    char tmp;
+    int len = strlen( str );
+    for( int i = 0; i < len / 2; i++ ){
+        tmp = str[i];
+        str[i] = str[len - i - 1];
+        str[len-i-1] = tmp;
+    }
+
+    return;
+}

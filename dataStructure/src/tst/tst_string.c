@@ -25,6 +25,13 @@ void tst_longestPalindrome( void ){
 }
 
 void tst_reverseWords( void ){
+    char a[] = "the sky is blue";
+    char b[] = "  hello world!  ";
+    char c[] = "a good   example";
+
+    reverseWords( a );
+    reverseWords( b );
+    reverseWords( c );
 
     return;
 }
