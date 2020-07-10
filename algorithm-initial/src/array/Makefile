@@ -1,16 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = alg_array
-MODULE_OBJ  = removeDuplicates.o \
-			  maxProfit.o \
-			  rotate.o \
-			  containsDuplicate.o \
-			  singleNumber.o \
-			  intersect.o \
-			  moveZeroes.o \
-			  twoSum.o \
-			  isValidSudoku.o \
-			  rotatei.o
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

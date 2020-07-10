@@ -1,7 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = ds_comm
-MODULE_OBJ  = ds_comm.o
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

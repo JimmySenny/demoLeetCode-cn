@@ -1,14 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = ds_array
-MODULE_OBJ  = pivotIndex.o \
-			  dominantIndex.o \
-			  plusone.o \
-			  searchInsert.o \
-			  findDiagonalOrder.o \
-			  merge.o \
-			  setZeroes.o
-
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

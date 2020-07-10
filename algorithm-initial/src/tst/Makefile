@@ -1,9 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = alg_tst
-MODULE_OBJ  = alg_tst.o \
-			  tst_array.o \
-			  tst_string.o
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

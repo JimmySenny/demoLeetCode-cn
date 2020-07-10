@@ -29,9 +29,25 @@ void tst_reverseWords( void ){
     char b[] = "  hello world!  ";
     char c[] = "a good   example";
 
+
+    /*
     reverseWords( a );
     reverseWords( b );
     reverseWords( c );
+    */
+
+    reverseWords2( a );
+    reverseWords2( b );
+    reverseWords2( c );
+
+    return;
+}
+
+void tst_arrayPairSum( void ){
+    int numsSize = 1;
+    char nums[] = "abc";
+
+    arrayPairSum( nums, numsSize );
 
     return;
 }

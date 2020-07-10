@@ -1,10 +1,7 @@
 include ../../etc/makefile
 
 MODULE_NAME = ds_tst
-MODULE_OBJ  = ds_tst.o \
-					tst_array.o \
-					tst_string.o \
-					tst_queue.o
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

@@ -1,15 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = alg_string
-MODULE_OBJ  = reverseString.o \
-			  reverse.o \
-			  firstUniqChar.o \
-			  isAnagram.o \
-			  isPalindrome.o \
-			  myAtoi.o \
-			  strStr.o \
-			  countAndSay.o \
-			  longestCommonPrefix.o
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

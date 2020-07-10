@@ -23,3 +23,18 @@ void reverseChars( char * str ){
 
     return;
 }
+
+void reverseCharsbyIdx( char * str, int start, int end ){
+    char tmp;
+    int len = end - start + 1;
+    int idx = start;
+
+    for( int i = 0; i < len / 2; i++ ){
+        tmp = str[idx];
+        str[idx] = str[start + len - 1 - i];
+        str[start + len - 1 - i] = tmp;
+        idx++;
+    }
+
+    return;
+}

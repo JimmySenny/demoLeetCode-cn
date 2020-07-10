@@ -1,8 +1,7 @@
 include ../../etc/Makefile
 
 MODULE_NAME = alg_comm
-MODULE_OBJ  = alg_comm.o \
-			  gcd.o
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 
