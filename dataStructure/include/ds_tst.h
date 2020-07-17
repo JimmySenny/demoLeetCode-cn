@@ -1,4 +1,4 @@
-#include "ds_comm.h"
+#include "ds.h"
 
 /* array */
 extern void tst_pivotIndex( void );

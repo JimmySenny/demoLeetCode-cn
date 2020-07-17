@@ -1,8 +1,6 @@
 include ../etc/Makefile
 
-ALLDIRS = ${WORKDIR}/src/comm \
-		  ${WORKDIR}/src/util \
-		  ${WORKDIR}/src/array \
+ALLDIRS = ${WORKDIR}/src/array \
 		  ${WORKDIR}/src/string \
 		  ${WORKDIR}/src/queue \
 		  ${WORKDIR}/src/tst 

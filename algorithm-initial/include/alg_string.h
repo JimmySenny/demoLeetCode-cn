@@ -1,4 +1,4 @@
-#include "alg_comm.h"
+#include "alg.h"
 
 extern void reverseString(char* s, int sSize);
 

@@ -1,6 +1,6 @@
 include ../../etc/Makefile
 
-MODULE_NAME = alg_comm
+MODULE_NAME = lutil
 MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a

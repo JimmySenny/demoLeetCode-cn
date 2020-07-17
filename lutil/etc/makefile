@@ -1,6 +1,4 @@
-WORKDIR    = /home/jimmy/demoLeetCode-cn/dataStructure
-LUTILDIR   = /home/jimmy/demoLeetCode-cn/lutil
-
+WORKDIR    = /home/jimmy/demoLeetCode-cn/lutil
 CC         = gcc
 CFLAG      = -g -Wall -fPIC -I${WORKDIR}/include
 #LD        = gcc
@@ -22,10 +20,9 @@ BINDIR     = ${WORKDIR}/bin
 LIBDIR     = ${WORKDIR}/lib
 
 MODULECFLGS= -g -Wall -fPIC -I${WORKDIR}/include
-DBCFLGS    = -g -Wall -fPIC -I./
-LUTILCFLGS = -I${LUTILDIR}/include
+DBCFLGS    = -g -Wall -g -fPIC -I./
 
-CFLAGS     = ${CFLAG} ${MODULECFLGS} ${DBCFLGS} ${LUTILCFLGS}
+CFLAGS     = ${MODULECFLGS} ${DBCFLGS}
 
 .SUFFIXES: .c .o
 

@@ -1,6 +1,8 @@
 WORKDIR    = /home/jimmy/demoLeetCode-cn/algorithm-initial
+LUTILDIR   = /home/jimmy/demoLeetCode-cn/lutil
+
 CC         = gcc
-CFLAG      = -g -Wall -fPIC -I${WORKDIR}/include
+CFLAG      = -g -Wall -fPIC -I${WORKDIR}/include 
 #LD        = gcc
 
 SHLIBEXT   = .so
@@ -20,9 +22,10 @@ BINDIR     = ${WORKDIR}/bin
 LIBDIR     = ${WORKDIR}/lib
 
 MODULECFLGS= -g -Wall -fPIC -I${WORKDIR}/include
-DBCFLGS    = -g -Wall -g -fPIC -I./
+DBCFLGS    = -g -Wall -fPIC -I${WORKDIR}/include -I./  
+LUTILCFLGS = -I${LUTILDIR}/include
 
-CFLAGS     = ${MODULECFLGS} ${DBCFLGS}
+CFLAGS     = ${CFLAG} ${MODULECFLGS} ${DBCFLGS}  ${LUTILCFLGS}
 
 .SUFFIXES: .c .o
 

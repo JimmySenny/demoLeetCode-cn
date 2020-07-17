@@ -1,4 +1,4 @@
-#include "alg_comm.h"
+#include "alg.h"
 
 extern int removeDuplicates( int* nums, int numsSize );
 

@@ -1,4 +1,4 @@
-#include "alg_comm.h"
+#include "alg.h"
 
 /* array */
 extern void tst_removeDuplicates( void );

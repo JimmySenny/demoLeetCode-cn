@@ -1,7 +1,6 @@
 include ../etc/Makefile
 
-ALLDIRS = ${WORKDIR}/src/array \
-		  ${WORKDIR}/src/string \
+ALLDIRS = ${WORKDIR}/src/lutil \
 		  ${WORKDIR}/src/tst 
 
 all:

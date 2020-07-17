@@ -1,4 +1,4 @@
-#include "ds_comm.h"
+#include "ds.h"
 
 /* Array */
 //一维数组
