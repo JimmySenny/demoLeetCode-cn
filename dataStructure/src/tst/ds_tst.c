@@ -21,7 +21,14 @@ int main( int argc, char * argv[] ){
     tst_longestPalindrome( );
     tst_reverseWords( );
      */
+
+    /*
+     * doublePorint
     tst_arrayPairSum( );
+    tst_twoSum( );
+    tst_removeElement( );
+     */
+    tst_findMaxConsecutiveOnes( );
 
     /*
      * queue

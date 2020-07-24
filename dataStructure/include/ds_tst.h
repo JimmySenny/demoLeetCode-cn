@@ -16,8 +16,15 @@ extern void tst_findDiagonalOrder( void );
 extern void tst_longestPalindrome( void );
 extern void tst_longestPalindrome2( void );
 extern void tst_reverseWords( void );
+
+/* double pointer */
 extern void tst_arrayPairSum( void );
+extern void tst_twoSum( void );
+extern void tst_removeElement( void );
+extern void tst_findMaxConsecutiveOnes( void );
+
 
 extern void tst_circularQueueEnQueue( void );
 extern void tst_numIslands( void );
+
 

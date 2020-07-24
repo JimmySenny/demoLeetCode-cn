@@ -42,14 +42,3 @@ void tst_reverseWords( void ){
 
     return;
 }
-
-void tst_arrayPairSum( void ){
-    int numsSize = 1;
-    int nums[] = { 1, 4, 3, 2 };
-
-    numsSize = 4;
-
-    arrayPairSum( nums, numsSize );
-
-    return;
-}

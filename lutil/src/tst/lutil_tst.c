@@ -13,6 +13,11 @@ int main(int argc, char* argv[]){
      */
 
     /*
+     * search
+     */
+    tst_binarySearch( );
+
+    /*
      * reverse
      */
 
