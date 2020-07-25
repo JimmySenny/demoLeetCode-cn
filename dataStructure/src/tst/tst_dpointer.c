@@ -80,6 +80,24 @@ void tst_findMaxConsecutiveOnes( void ){
 
     iRet = findMaxConsecutiveOnes1( nums, numsSize );
     printf( "iRet[%d]\n", iRet );
+
     
+    return;
+}
+
+void tst_minSubArrayLen( void ){
+    int s = 7;
+    int nums[] = {2,3,1,2,4,3};
+    int numsSize = 6;
+    int iRet = 0;
+
+    printNums( nums, numsSize );
+    printf( "target[%d]\n", s );
+    iRet = minSubArrayLen( s, nums, numsSize );
+    printf( "iRet[%d]\n", iRet );
+
+    iRet = minSubArrayLen1( s, nums, numsSize );
+    printf( "iRet[%d]\n", iRet );
+
     return;
 }

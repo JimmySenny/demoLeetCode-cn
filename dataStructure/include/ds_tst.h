@@ -22,6 +22,7 @@ extern void tst_arrayPairSum( void );
 extern void tst_twoSum( void );
 extern void tst_removeElement( void );
 extern void tst_findMaxConsecutiveOnes( void );
+extern void tst_minSubArrayLen( void );
 
 
 extern void tst_circularQueueEnQueue( void );

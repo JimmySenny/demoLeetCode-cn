@@ -27,8 +27,9 @@ int main( int argc, char * argv[] ){
     tst_arrayPairSum( );
     tst_twoSum( );
     tst_removeElement( );
-     */
     tst_findMaxConsecutiveOnes( );
+     */
+    tst_minSubArrayLen( );
 
     /*
      * queue

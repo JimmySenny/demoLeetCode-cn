@@ -1,10 +1,36 @@
 #include "ds_dpointer.h"
 
+
+/*
+ * 暴力 统计
+ */
+int findMaxConsecutiveOnes( int * nums, int numsSize ){
+    int max = 0;
+    int count = 0;
+
+    for( int i = 0; i < numsSize; i++ ){
+        if( 1 == nums[i] ){
+            count++;
+        }else{
+            if( max < count ){
+                max = count;
+                count = 0;
+            }
+        }
+    }
+
+    // 最长连续在末尾
+    if( max < count ){ 
+        max = count;
+    }
+
+    return max;
+}
+
 /*
  * 暴力 滑动窗口
  */
-int findMaxConsecutiveOnes( int * nums, int numsSize ){
-    int i = 0, j = 0;
+int findMaxConsecutiveOnes1( int * nums, int numsSize ){
     int start = -1, end = -1;
     int width = 0, max = 0; 
 
@@ -39,9 +65,9 @@ int findMaxConsecutiveOnes( int * nums, int numsSize ){
 }
 
 /*
- * 
+ * 双指针
  */
-int findMaxConsecutiveOnes1( int * nums, int numsSize ){
+int findMaxConsecutiveOnes2( int * nums, int numsSize ){
     int start = -1, end = -1;
     int idx = 0;
     int max = 0;
