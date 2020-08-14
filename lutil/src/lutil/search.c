@@ -8,7 +8,7 @@ int _binarySearch( int * nums, int left, int right, int target ){
 
     int mid;
     while( left < right ){
-        mid = left + ( rigth - left ) >> 2;
+        mid = left + ( right - left ) >> 2;
 
         if( nums[mid] < target ){
             left = mid + 1;

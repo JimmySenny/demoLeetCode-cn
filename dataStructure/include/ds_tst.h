@@ -8,6 +8,11 @@ extern void tst_searchInsert( void );
 extern void tst_searchInsert1( void );
 extern void tst_merge( void );
 
+extern void tst_generate( void );
+extern void tst_getRow( void );
+extern void tst_reverseWords( void );
+extern void tst_findMin( void );
+
 /* array */
 extern void tst_setZeroes( void );
 extern void tst_findDiagonalOrder( void );

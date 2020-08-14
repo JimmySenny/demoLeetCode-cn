@@ -15,11 +15,12 @@ int main(int argc, char* argv[]){
     /*
      * search
      */
-    tst_binarySearch( );
+    //tst_binarySearch( );
 
     /*
      * reverse
      */
+    tst_reverseNums( );
 
     return 0;
 }

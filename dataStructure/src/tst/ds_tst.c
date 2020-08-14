@@ -10,11 +10,12 @@ int main( int argc, char * argv[] ){
     tst_searchInsert();
      */
     //tst_merge();
+    //tst_generate( );
 
     /*
     tst_setZeroes();
-    tst_findDiagonalOrder( );
     */
+    tst_findDiagonalOrder( );
 
     /*
      * string
@@ -28,8 +29,8 @@ int main( int argc, char * argv[] ){
     tst_twoSum( );
     tst_removeElement( );
     tst_findMaxConsecutiveOnes( );
-     */
     tst_minSubArrayLen( );
+     */
 
     /*
      * queue

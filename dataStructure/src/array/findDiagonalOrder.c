@@ -3,21 +3,32 @@
 /**
  ** Note: The returned array must be malloced, assume caller calls free().
  **/
-int findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize){
+int * findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize){
     // 对角线
     int i = 0, j = 0; // (i,j) 坐标
     int signFlag = 1; //正反序标识
     int k = 1, l = 0, m = 0, n = 0; //计数器
 
-    int* reArray = (int*)malloc( sizeof( int ) * matrixSize * matrixColSize[0] + 1 );
-    int* tmpArray = (int*)malloc( sizeof( int ) * ( matrixSize + matrixColSize[0] ) + 1 );
+    int* reArray = NULL;
+    int* tmpArray = NULL;
 
-    memset( reArray, 0x00, sizeof( reArray ) );
+    *returnSize = matrixSize * matrixColSize[0];
+
+    if( matrixSize < 1 || matrixColSize[0] < 1 ){
+        return reArray;
+    }
+
+    reArray = (int*)malloc( sizeof( int ) * matrixSize * matrixColSize[0] + 1 );
+    tmpArray = (int*)malloc( sizeof( int ) * ( matrixSize + matrixColSize[0] ) + 1 );
+
+    memset( reArray, 0x00, sizeof(int) *( matrixSize * matrixColSize[0] ) );
+    *returnSize = matrixSize * matrixColSize[0];
+
     m = 0;
     for( k = 0; k < matrixSize + matrixColSize[0] - 1; k++ ) { //多少条对角线
         signFlag = k % 2;
         l = 0;
-        memset( tmpArray, 0x00, sizeof( tmpArray ) );
+        memset( tmpArray, 0x00, sizeof(int) * (matrixSize + matrixColSize[0]) );
         if( k < matrixColSize[0] ){
             printf( " order1: " );
             i = 0;
@@ -51,7 +62,7 @@ int findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* ret
             j--;
         }
         printf( "\n" );
-        printf( "l[%d]signFlag[%d]i[%d]\n", l, signFlag, i );
+        printf( "l:[%d]signFlag[%d]i[%d]\n", l, signFlag, i );
         printNums( tmpArray, l );
         if( 0 == signFlag ){ //偶数对角线逆序
             reverseNums( tmpArray, l );
@@ -61,8 +72,11 @@ int findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* ret
         for( n = 0; n < l; m++, n++ ){
             reArray[m] = tmpArray[n];
         }
+        printNums( reArray, m );
     }
-    printNums( reArray, matrixSize * matrixColSize[0] );
 
-    return 0;
+    printf( "re[%d]", *returnSize );
+//    printNums( reArray, *returnSize );
+
+    return reArray;
 }
