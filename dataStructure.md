@@ -1109,9 +1109,9 @@ for (int i = 0; i < len; i++) {
 
 # 队列&栈
 
-## 队列简介
+## 队列 
 
-> **先入先出的数据结构**
+### 先入先出数据结构
 
 ------
 
@@ -1121,7 +1121,17 @@ for (int i = 0; i < len; i++) {
 
 如上图所示，队列是典型的 FIFO 数据结构。插入（insert）操作也称作入队（enqueue），新元素始终被添加在`队列的末尾`。 删除（delete）操作也被称为出队（dequeue)。 你只能移除`第一个元素`。
 
-## 队列 - 实现
+入队与出队
+
+![img](https://pic.leetcode-cn.com/44b3a817f0880f168de9574075b61bd204fdc77748d4e04448603d6956c6428a-%E5%87%BA%E5%85%A5%E9%98%9F.gif)
+
+
+
+
+
+
+
+### 实现
 
 ------
 
@@ -1234,7 +1244,7 @@ public class Main {
 
 
 
-## 循环队列
+### 循环队列
 
 ------
 
@@ -1244,7 +1254,7 @@ public class Main {
 
 让我们通过一个示例来查看循环队列的工作原理。 你应该注意我们`入队`或`出队`元素时使用的策略。
 
-### 设计循环队列
+#### 设计循环队列
 
 ------
 
@@ -1284,7 +1294,9 @@ circularQueue.enQueue(4);  // 返回 true
 circularQueue.Rear();  // 返回 4
 ```
 
-### 实现循环队列
+
+
+#### 实现循环队列
 
 在循环队列中，我们使用一个`数组`和两个指针（`head` 和 `tail`）。 `head` 表示队列的起始位置，`tail` 表示队列的结束位置。
 
@@ -1520,7 +1532,7 @@ void MyCircularQueueItera(MyCircularQueue* obj) {
 
 ## 队列和 BFS
 
-广度优先搜索（BFS）的一个常见应用是找出从根结点到目标结点的最短路径。
+广度优先搜索（BFS）是一种`遍历或搜索`数据结构（如树或图）的算法，一个常见应用是找出从根结点到目标结点的最短路径。
 
 ### 洞悉
 
@@ -1730,6 +1742,179 @@ int BFS(Node root, Node target) {
 
 
 
-# 栈
+## 栈
 
-### 
+###  后入先出的数据结构
+
+`栈，后入先出`（LIFO）的数据结构。
+
+![img](assets/screen-shot-2018-06-02-at-203523.png)
+
+在 LIFO 数据结构中，将首先处理添加到队列中的最新元素。
+
+与队列不同，栈是一个 LIFO 数据结构。通常，插入操作在栈中被称作入栈 push 。与队列类似，总是在堆栈的末尾添加一个新元素。但是，删除操作，退栈 pop ，将始终删除队列中相对于它的最后一个元素。
+
+![img](assets/691e2a8cca120acb18e77379c7cd7eec3835c8c102d1c699303f50accd1e09df-出入栈.gif)
+
+#### 实现
+
+栈的实现比队列容易。`动态数组`足以实现堆栈结构。
+
+```java
+// "static void main" must be defined in a public class.
+class MyStack {
+    private List<Integer> data;               // store elements
+    public MyStack() {
+        data = new ArrayList<>();
+    }
+    /** Insert an element into the stack. */
+    public void push(int x) {
+        data.add(x);
+    }
+    /** Checks whether the queue is empty or not. */
+    public boolean isEmpty() {
+        return data.isEmpty();
+    }
+    /** Get the top item from the queue. */
+    public int top() {
+        return data.get(data.size() - 1);
+    }
+    /** Delete an element from the queue. Return true if the operation is successful. */
+    public boolean pop() {
+        if (isEmpty()) {
+            return false;
+        }
+        data.remove(data.size() - 1);
+        return true;
+    }
+};
+
+public class Main {
+    public static void main(String[] args) {
+        MyStack s = new MyStack();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        for (int i = 0; i < 4; ++i) {
+            if (!s.isEmpty()) {
+                System.out.println(s.top());
+            }
+            System.out.println(s.pop());
+        }
+    }
+}
+```
+
+#### 用法
+
+大多数流行的语言都提供了内置的栈库，因此你不必重新发明轮子。除了初始化，我们还需要知道如何使用两个最重要的操作：入栈和退栈。除此之外，你应该能够从栈中获得顶部元素。
+
+### 最小栈
+
+设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
+
+push(x) —— 将元素 x 推入栈中。
+pop() —— 删除栈顶的元素。
+top() —— 获取栈顶元素。
+getMin() —— 检索栈中的最小元素。
+
+
+示例:
+
+输入：
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+输出：
+[null,null,null,null,-3,null,0,-2]
+
+解释：
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.getMin();   --> 返回 -2.
+
+
+提示：
+
+pop、top 和 getMin 操作总是在 非空栈 上调用。
+
+
+
+
+
+### 有效的括号 isValid
+
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+
+有效字符串需满足：
+
+左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+注意空字符串可被认为是有效字符串。
+
+示例 1:
+
+输入: "()"
+输出: true
+示例 2:
+
+输入: "()[]{}"
+输出: true
+示例 3:
+
+输入: "(]"
+输出: false
+示例 4:
+
+输入: "([)]"
+输出: false
+示例 5:
+
+输入: "{[]}"
+输出: true
+
+### 每日温度 dailyTemperatures
+
+请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。
+
+例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。
+
+提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

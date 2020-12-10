@@ -14,8 +14,8 @@ int main( int argc, char * argv[] ){
 
     /*
     tst_setZeroes();
-    */
     tst_findDiagonalOrder( );
+    */
 
     /*
      * string
@@ -37,6 +37,10 @@ int main( int argc, char * argv[] ){
     tst_circularQueueEnQueue();
      */
 
+    /*
+     * stack
+     */
+    tst_minStack( );
 
     return 0;
 }

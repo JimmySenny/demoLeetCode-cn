@@ -4,6 +4,7 @@ ALLDIRS = ${WORKDIR}/src/array \
 		  ${WORKDIR}/src/string \
 		  ${WORKDIR}/src/dpointer \
 		  ${WORKDIR}/src/queue \
+		  ${WORKDIR}/src/stack \
 		  ${WORKDIR}/src/tst 
 
 all:

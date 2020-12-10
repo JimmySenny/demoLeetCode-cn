@@ -29,8 +29,11 @@ extern void tst_removeElement( void );
 extern void tst_findMaxConsecutiveOnes( void );
 extern void tst_minSubArrayLen( void );
 
-
+/* queue */
 extern void tst_circularQueueEnQueue( void );
 extern void tst_numIslands( void );
 
+/* stack */
+extern void tst_minStack( void );
+extern void tst_isValid( void );
 
