@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 # -*- coding:utf-8 -*-
+
 import array;
 
 class Solution:
-    # TODO digist:List[int] -> List[int]
     #def plusOne(self, digits:List[int]) -> List[int]:
     def plusOne(self, digits):
         for i in range(len(digits) -1, -1, -1):
@@ -12,6 +13,21 @@ class Solution:
             digits[i] = 0;
         digits = [1] + digits;
         return digits;
+
+    def plusOneStr(self, digits):
+        digits = digits[::-1];
+        ans = []
+        carry = 1
+        i = 0
+        while i < len(digits) or carry:
+            n = digits[i] if i < len(digits) else 0
+            n = n + carry
+            carry = 1 if n > 9 else 0
+            ans.append(int(n%10))
+            i += 1
+
+        return ans[::-1]
+
     
     def plusOneUniversal(self, digits):
         flag = 1;
@@ -55,6 +71,9 @@ def main():
     List = [9,9,9];
     s = Solution();
     print(s.plusOne(List));
+
+    List = [9,9,9];
+    print(s.plusOneStr(List));
 
     List = [9,9,9];
     print(s.plusOneUniversal(List));
