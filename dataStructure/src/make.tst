@@ -2,7 +2,7 @@ include ../etc/Makefile
 
 BIN_NAME = ds_tst
 
-OBJ_LIB  = ${WORKDIR}/lib/libds_tst.a ${WORKDIR}/lib/libds_stack.a ${WORKDIR}/lib/libds_queue.a ${WORKDIR}/lib/libds_dpointer.a ${WORKDIR}/lib/libds_string.a ${WORKDIR}/lib/libds_array.a ${LUTILDIR}/lib/liblutil.a
+OBJ_LIB  = ${WORKDIR}/lib/libds_tst.a ${WORKDIR}/lib/libds_queue-stack.a ${WORKDIR}/lib/libds_dpointer.a ${WORKDIR}/lib/libds_string.a ${WORKDIR}/lib/libds_array.a ${LUTILDIR}/lib/liblutil.a
 
 EXECOBJ  = ${WORKDIR}/bin/${BIN_NAME}.out
 

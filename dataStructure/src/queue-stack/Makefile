@@ -1,9 +1,7 @@
 include ../../etc/Makefile
 
-MODULE_NAME = ds_queue
-MODULE_OBJ  = circularQueue.o \
-			  numIsland.o
-
+MODULE_NAME = ds_queue-stack
+MODULE_OBJ  = $(patsubst %.c, %.o, $(wildcard *.c))
 
 MODULE_LIB  = ${WORKDIR}/lib/lib${MODULE_NAME}.a
 

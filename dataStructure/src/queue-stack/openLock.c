@@ -68,7 +68,7 @@ bool enLockQueue(LOCK_QUEUE * q, NODE * n){
         return false;
     }
 
-    q->elem[q->rear] = n;
+    q->elem[q->rear] = *n;
     q->rear = (q->rear + 1)%LOCK_MAXNUM;
     q->size++;
 
@@ -76,7 +76,7 @@ bool enLockQueue(LOCK_QUEUE * q, NODE * n){
 }
 
 bool deLockQueue(LOCK_QUEUE * q, NODE * n){
-    if( isLockQueueEmpty()){
+    if( isLockQueueEmpty(q)){
         return false;
     }
 
@@ -88,11 +88,11 @@ bool deLockQueue(LOCK_QUEUE * q, NODE * n){
 }
 
 NODE * frontLockQueue( LOCK_QUEUE * q ){
-    return q->elem[q->front];
+    return &(q->elem[q->front]);
 }
 
 NODE * rearLockQueue( LOCK_QUEUE * q ){
-    return q->elem[q->rear];
+    return &(q->elem[q->rear]);
 }
 
 bool isTarget( const char * this,const char * target ){
@@ -133,10 +133,10 @@ int openLock(char ** deadrears, int deadrearsSize, char * target){
     LOCK_QUEUE * q;
 
     q = (LOCK_QUEUE *)malloc( sizeof( LOCK_QUEUE ) );
-    if( NULL = q ){
+    if( NULL == q ){
         return steps;
     }
-    q->length = 0;
+//    q->length = 0;
     q->front = 0;
     q->rear = 0;
 

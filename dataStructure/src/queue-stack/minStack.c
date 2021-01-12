@@ -14,6 +14,7 @@
  * minStackFree(obj);
 */
 
+/*
 MinStack* minStackCreate() {
     MinStack  minstack;
     
@@ -68,3 +69,5 @@ void minStackFree(MinStack* obj) {
     if( obj->arrMinStack != NULL ){
     }
 }
+
+*/
