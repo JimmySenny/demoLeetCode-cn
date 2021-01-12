@@ -16,6 +16,7 @@
  
  * minStackFree(obj);
 */
+/*
 typedef struct {
     int maxStackLen = 5;
     int currStackLen = 0;
@@ -35,5 +36,6 @@ void minStackPop( MinStack * obj );
 int minStackTop( MinStack * obj );
 
 int minStackGetMin( MinStack* obj );
+*/
 
 extern bool isValid(char * s);
