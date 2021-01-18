@@ -5,6 +5,7 @@ ALLDIRS = ${WORKDIR}/src/array \
 		  ${WORKDIR}/src/dpointer \
 		  ${WORKDIR}/src/queue-stack \
 		  ${WORKDIR}/src/link \
+		  ${WORKDIR}/src/hash \
 		  ${WORKDIR}/src/tst 
 
 all:
