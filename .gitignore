@@ -8,7 +8,8 @@ a.out
 *.tar
 *.tar.gz
 *.tgz
-
 *.swp
 
 *.tst
+
+__pycache__/*

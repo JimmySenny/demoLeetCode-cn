@@ -20,26 +20,26 @@ class Solution:
             return self.traversalRecursion(root.left,order) + self.traversalRecursion(root.right,order) + [root.val]
         else:
             return None
-    def trRecursion(self,curr,res,order):
+    def subrecursion(self,curr,res,order):
         if not curr:
             return []
         if "pre" == order: 
             res.append(curr.val)
-            self.trRecursion(curr.left,res,order)
-            self.trRecursion(curr.right,res,order)
+            self.subrecursion(curr.left,res,order)
+            self.subrecursion(curr.right,res,order)
         elif "in" == order:
-            self.trRecursion(curr.left,res,order)
+            self.subrecursion(curr.left,res,order)
             res.append(curr.val)
-            self.trRecursion(curr.right,res,order)
+            self.subrecursion(curr.right,res,order)
         elif "post" == order:
-            self.trRecursion(curr.left,res,order)
-            self.trRecursion(curr.right,res,order)
+            self.subrecursion(curr.left,res,order)
+            self.subrecursion(curr.right,res,order)
             res.append(curr.val)
         else:
             return None
     def traversalRecursion2(self, root,order="pre"):
         res = []
-        self.trRecursion(root,res,order)
+        self.subrecursion(root,res,order)
         return res
     def traversalDFS(self,root,order="pre"):
         res = []
@@ -88,12 +88,19 @@ class Solution:
             if cur.left:
                 stack.append(cur.left)
         return res
-    def traversalDFSin(self,root,order="in"):
+    def traversalBFSlevel(self,root,order="pre"):
         if not root:
             return []
-        res = []
-        stack= [root]
-
+        queue = [root]
+        res = [root.val]
+        while queue:
+            cur = queue.pop(0)
+            if cur.left:
+                queue.append(cur.left)
+                res.append(cur.left.val)
+            if cur.right:
+                queue.append(cur.right)
+                res.append(cur.right.val)
         return res
     def traversalDFSpost(self,root,order="post"):
         if not root:
@@ -127,7 +134,6 @@ class Solution:
     def traversalflagiter(self,root,order):
         res = []
         qs = [(0,root)]
-        qs = [(0,root)]
         while qs:
             if "level" != order:
                 flag, cur = qs.pop()
@@ -149,9 +155,9 @@ class Solution:
                     qs.append((0,cur.right))
                     qs.append((0,cur.left))
                 if "level" == order:# 层序 先上再下先左后右 queue left right 
+                    qs.append((1,cur))
                     qs.append((0,cur.left))
                     qs.append((0,cur.right))
-                    qs.append((1,cur))
             else:
                 res.append(cur.val)
         return res
@@ -160,9 +166,9 @@ class Solution:
 def main():
     n8 = TreeNode(8)
     n7 = TreeNode(7)
-    n6 = TreeNode(6)
+    n6 = TreeNode(6,None,n8)
     n5 = TreeNode(5)
-    n4 = TreeNode(4,n8)
+    n4 = TreeNode(4)
     n3 = TreeNode(3,n6,n7)
     n2 = TreeNode(2,n4,n5)
     n1 = TreeNode(1,n2,n3)
@@ -180,16 +186,16 @@ def main():
     print("traversalRecursion",s.traversalRecursion(root,"in"))
     print("traversalRecursion2",s.traversalRecursion2(root,"in"))
     print("traversalDFS",s.traversalDFS(root,"in"))
-    print("traversalDFS",s.traversalDFSin(root,"in"))
     print("traversalflagiter",s.traversalflagiter(root,"in"))
     print("post")
     print("traversalRecursion",s.traversalRecursion(root,"post"))
     print("traversalRecursion2",s.traversalRecursion2(root,"post"))
     print("traversalDFS",s.traversalDFS(root,"post"))
-    print("traversalDFSpost",s.traversalDFSpost(root,"pre"))
+    print("traversalDFSpost",s.traversalDFSpost(root,"post"))
     print("traversalflagiter",s.traversalflagiter(root,"post"))
     print("level")
     print("traversalLevel",s.traversalLevel(root))
+    print("traversalBFSlevel",s.traversalBFSlevel(root,None))
     print("traversalflagiter",s.traversalflagiter(root,"level"))
 
 if __name__ == '__main__':
