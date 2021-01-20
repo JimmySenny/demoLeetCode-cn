@@ -7,6 +7,53 @@ class TreeNode:
         self.left = left
         self.right = right
 
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        :type root: TreeNode
+        :rtype: str
+        """
+        res = ""
+        return self.recusionSerialize(root,res)
+    def recusionSerialize(self,root,res):
+        if not root:
+            res += str(None) 
+            res += ","
+        else:
+            res += str(root.val) + ","
+            res = self.recusionSerialize(root.left, res)
+            res = self.recusionSerialize(root.right, res)
+        return res
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        :type data: str
+        :rtype: TreeNode
+        """
+        print(type(data))
+        array = data.split(",")
+        datalist = list(array)
+        return self.recusionDeserialize(datalist)
+    def recusionDeserialize(self,datalist):
+        dlen = len(datalist)
+        if 0 == dlen:
+            return None
+        if 'None' == datalist[0] or '' == datalist[0]:
+            datalist.pop(0)
+            return None
+        root = TreeNode(int(datalist[0]))
+        datalist.pop(0)
+        root.left = self.recusionDeserialize(datalist)
+        root.right = self.recusionDeserialize(datalist)
+
+        return root
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
+
 class Solution:
 #    def traversal(self, root: TreeNode) -> List[int]:
     def traversalRecursion(self, root,order="pre"):
@@ -41,20 +88,6 @@ class Solution:
         res = []
         self.subrecursion(root,res,order)
         return res
-    def traversalRecursion3(self, root,order="post"):
-        return self.recusion3(root,order)
-    def recusion3(self,root,order):
-        if not root:
-            return None
-        print(root.val,end='|')
-        if "pre" == order:
-            nodeleft = self.recusion3(root.left,order)
-            noderight = self.recusion3(root.right,order)
-        if "post" == order:
-            noderight = self.recusion3(root.right,order)
-            nodeleft = self.recusion3(root.left,order)
-        return 
-
     def traversalDFS(self,root,order="pre"):
         res = []
         stack = []
@@ -188,35 +221,16 @@ def main():
     n1 = TreeNode(1,n2,n3)
 
     root = n1
-
     s = Solution()
-    print("pre")
-    print("traversalRecursion",s.traversalRecursion(root,"pre"))
-    print("traversalRecursion2",s.traversalRecursion2(root,"pre"))
-    print("traversalRecursion3")
-    s.traversalRecursion3(root,"pre")
-    print()
-    print("traversalDFS",s.traversalDFS(root,"pre"))
-    print("traversalDFSpre",s.traversalDFSpre(root,"pre"))
-    print("traversalflagiter",s.traversalflagiter(root,"pre"))
-    print("in")
-    print("traversalRecursion",s.traversalRecursion(root,"in"))
-    print("traversalRecursion2",s.traversalRecursion2(root,"in"))
-    print("traversalDFS",s.traversalDFS(root,"in"))
-    print("traversalflagiter",s.traversalflagiter(root,"in"))
-    print("post")
-    print("traversalRecursion",s.traversalRecursion(root,"post"))
-    print("traversalRecursion2",s.traversalRecursion2(root,"post"))
-    print("traversalRecursion3")
-    s.traversalRecursion3(root,"post")
-    print()
-    print("traversalDFS",s.traversalDFS(root,"post"))
-    print("traversalDFSpost",s.traversalDFSpost(root,"post"))
-    print("traversalflagiter",s.traversalflagiter(root,"post"))
-    print("level")
-    print("traversalBFSlevel",s.traversalBFSlevel(root,None))
-    print("traversalLevel",s.traversalLevel(root))
-    print("traversalflagiter",s.traversalflagiter(root,"level"))
+    print(s.traversalflagiter(root,"in"))
 
+
+    c = Codec()
+    print("serialize")
+    res = c.serialize(root)
+    print(res)
+    newroot = c.deserialize(res)
+    print(s.traversalflagiter(newroot,"in"))
+    
 if __name__ == '__main__':
     main()
