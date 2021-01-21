@@ -20,39 +20,49 @@ class Solution:
             return self.traversalRecursion(root.left,order) + self.traversalRecursion(root.right,order) + [root.val]
         else:
             return None
-    def subrecursion(self,curr,res,order):
+    def recursionTraversal(self,curr,res,order):
         if not curr:
             return []
         if "pre" == order: 
             res.append(curr.val)
-            self.subrecursion(curr.left,res,order)
-            self.subrecursion(curr.right,res,order)
+            self.recursionTraversal(curr.left,res,order)
+            self.recursionTraversal(curr.right,res,order)
         elif "in" == order:
-            self.subrecursion(curr.left,res,order)
+            self.recursionTraversal(curr.left,res,order)
             res.append(curr.val)
-            self.subrecursion(curr.right,res,order)
+            self.recursionTraversal(curr.right,res,order)
         elif "post" == order:
-            self.subrecursion(curr.left,res,order)
-            self.subrecursion(curr.right,res,order)
+            self.recursionTraversal(curr.left,res,order)
+            self.recursionTraversal(curr.right,res,order)
             res.append(curr.val)
         else:
             return None
     def traversalRecursion2(self, root,order="pre"):
         res = []
-        self.subrecursion(root,res,order)
+        self.recursionTraversal(root,res,order)
         return res
-    def traversalRecursion3(self, root,order="post"):
-        return self.recusion3(root,order)
-    def recusion3(self,root,order):
+    def traversalRecursion3(self, root,order="pre"):
+        # 同recursion2 
+        return self.recursion3(root,order)
+    def recursion3(self,root,order):
         if not root:
             return None
-        print(root.val,end='|')
         if "pre" == order:
-            nodeleft = self.recusion3(root.left,order)
-            noderight = self.recusion3(root.right,order)
-        if "post" == order:
-            noderight = self.recusion3(root.right,order)
-            nodeleft = self.recusion3(root.left,order)
+            print(root.val,end='|')
+            nodeleft = self.recursion3(root.left,order)
+            noderight = self.recursion3(root.right,order)
+        elif "in" == order:
+            nodeleft = self.recursion3(root.left,order)
+            print(root.val,end='|')
+            noderight = self.recursion3(root.right,order)
+        elif "post" == order:
+            nodeleft = self.recursion3(root.left,order)
+            noderight = self.recursion3(root.right,order)
+            print(root.val,end='|')
+        else: #"other" == order:
+            print(root.val,end='|')
+            noderight = self.recursion3(root.right,order)
+            nodeleft = self.recursion3(root.left,order)
         return 
 
     def traversalDFS(self,root,order="pre"):
@@ -202,6 +212,9 @@ def main():
     print("in")
     print("traversalRecursion",s.traversalRecursion(root,"in"))
     print("traversalRecursion2",s.traversalRecursion2(root,"in"))
+    print("traversalRecursion3")
+    s.traversalRecursion3(root,"in")
+    print()
     print("traversalDFS",s.traversalDFS(root,"in"))
     print("traversalflagiter",s.traversalflagiter(root,"in"))
     print("post")
@@ -217,6 +230,10 @@ def main():
     print("traversalBFSlevel",s.traversalBFSlevel(root,None))
     print("traversalLevel",s.traversalLevel(root))
     print("traversalflagiter",s.traversalflagiter(root,"level"))
+
+    print("traversalRecursion3")
+    s.traversalRecursion3(root,"other")
+    print()
 
 if __name__ == '__main__':
     main()

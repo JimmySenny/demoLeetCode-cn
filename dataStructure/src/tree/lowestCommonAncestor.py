@@ -9,9 +9,9 @@ class TreeNode:
 
 class Solution:
     #def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-    def lowestCommonAncestorRecusion(self, root, p, q):
-        return self.recusionLCA(root,p,q)
-    def recusionLCA(self, root, p, q):
+    def lowestCommonAncestorrecursion(self, root, p, q):
+        return self.recursionLCA(root,p,q)
+    def recursionLCA(self, root, p, q):
         """
         #递归法序遍历二叉树
         左边没找到右边也没找到。说明题目给的二叉树根本不包含 p 或 q，返回 nullptr。
@@ -21,8 +21,8 @@ class Solution:
         """
         if not root or root == p or root == q:
             return root
-        nodeleft = self.recusionLCA(root.left,p,q)
-        noderight = self.recusionLCA(root.right,p,q)
+        nodeleft = self.recursionLCA(root.left,p,q)
+        noderight = self.recursionLCA(root.right,p,q)
         if not nodeleft and not noderight: # 1
             return None
         if nodeleft and noderight:
@@ -32,11 +32,11 @@ class Solution:
         if not noderight:   # 4
             return nodeleft
 
-    def recusionLCA1(self, root, p, q):
+    def recursionLCA1(self, root, p, q):
         if not root:
             return False
-        lson = self.recusionLCA1(root.left,p,q)
-        rson = self.recusionLCA1(root.right,p,q)
+        lson = self.recursionLCA1(root.left,p,q)
+        rson = self.recursionLCA1(root.right,p,q)
         if((lson and rson)or((root.val == p.val or root.val == q.val) and (lson or rson))):
             print("LCA:",root.val)
             ans = root
@@ -56,7 +56,7 @@ def main():
     root = n1
 
     s = Solution()
-    lca = s.lowestCommonAncestorRecusion(root,n7,n8)
+    lca = s.lowestCommonAncestorrecursion(root,n7,n8)
     if lca:
         print(lca.val)
 

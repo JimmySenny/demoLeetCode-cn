@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from traversal import Solution as tr
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -8,25 +10,24 @@ class TreeNode:
         self.right = right
 
 class Codec:
-
-    def serialize(self, root):
+    def serializeRe(self, root):
         """Encodes a tree to a single string.
         :type root: TreeNode
         :rtype: str
         """
         res = ""
-        return self.recusionSerialize(root,res)
-    def recusionSerialize(self,root,res):
+        return self.recursionSerialize(root,res)
+    def recursionSerialize(self,root,res):
+        # 递归(前序遍历)实现
         if not root:
             res += str(None) 
             res += ","
         else:
             res += str(root.val) + ","
-            res = self.recusionSerialize(root.left, res)
-            res = self.recusionSerialize(root.right, res)
+            res = self.recursionSerialize(root.left, res)
+            res = self.recursionSerialize(root.right, res)
         return res
-
-    def deserialize(self, data):
+    def deserializeRe(self, data):
         """Decodes your encoded data to tree.
         :type data: str
         :rtype: TreeNode
@@ -34,181 +35,66 @@ class Codec:
         print(type(data))
         array = data.split(",")
         datalist = list(array)
-        return self.recusionDeserialize(datalist)
-    def recusionDeserialize(self,datalist):
+        return self.recursionDeserialize(datalist)
+    def recursionDeserialize(self,datalist):
+        # 递归 逐个弹出 list 的首项（根节点值），构建当前子树的根节点，
+        # 顺着list，就会先构建根节点 > 构建左子树 > 构建右子树
         dlen = len(datalist)
         if 0 == dlen:
             return None
         if 'None' == datalist[0] or '' == datalist[0]:
             datalist.pop(0)
             return None
+        print(datalist)
         root = TreeNode(int(datalist[0]))
         datalist.pop(0)
-        root.left = self.recusionDeserialize(datalist)
-        root.right = self.recusionDeserialize(datalist)
+        root.left = self.recursionDeserialize(datalist)
+        root.right = self.recursionDeserialize(datalist)
+        return root
 
+    def serializeBFS(self,root):
+        queue = [root]
+        res = ""
+        while queue:
+            cur = queue.pop(0)
+            if cur:
+                res += str(cur.val) + ","
+                queue.append(cur.left)
+                queue.append(cur.right)
+            else:
+                res += str(None)
+                res += ","
+        return res
+    def deserializeBFS(self, data):
+        datalist = list(data.split(","))
+        print(datalist)
+        if 'None' == datalist[0] or '' == datalist[0]:
+            return None
+        root = TreeNode(int(datalist[0]))
+        queue = [root]
+        index = 1 
+        # 最后有一个逗号，造成''，故条件-1
+        while index < len(datalist) - 1:
+            cur = queue.pop(0)
+            valLeft = datalist[index]
+            valRight = datalist[index+1]
+            print("i,vl,vr",index,valLeft,valRight)
+            if 'None' != valLeft: # 真实节点
+                nodeLeft = TreeNode(int(valLeft)) #父节点挂接
+                cur.left = nodeLeft
+                queue.append(nodeLeft)
+            if 'None' != valRight:
+                nodeRight = TreeNode(int(valRight))
+                cur.right = nodeRight
+                queue.append(nodeRight)
+            # 一次考察一对子节点，指针加2
+            index += 2
         return root
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
 # deser = Codec()
 # ans = deser.deserialize(ser.serialize(root))
-
-class Solution:
-#    def traversal(self, root: TreeNode) -> List[int]:
-    def traversalRecursion(self, root,order="pre"):
-        if not root:
-            return []
-        if "pre" == order:
-            return [root.val] + self.traversalRecursion(root.left,order) + self.traversalRecursion(root.right,order)
-        elif "in" == order:
-            return self.traversalRecursion(root.left,order) + [root.val] + self.traversalRecursion(root.right,order)
-        elif "post" == order:
-            return self.traversalRecursion(root.left,order) + self.traversalRecursion(root.right,order) + [root.val]
-        else:
-            return None
-    def subrecursion(self,curr,res,order):
-        if not curr:
-            return []
-        if "pre" == order: 
-            res.append(curr.val)
-            self.subrecursion(curr.left,res,order)
-            self.subrecursion(curr.right,res,order)
-        elif "in" == order:
-            self.subrecursion(curr.left,res,order)
-            res.append(curr.val)
-            self.subrecursion(curr.right,res,order)
-        elif "post" == order:
-            self.subrecursion(curr.left,res,order)
-            self.subrecursion(curr.right,res,order)
-            res.append(curr.val)
-        else:
-            return None
-    def traversalRecursion2(self, root,order="pre"):
-        res = []
-        self.subrecursion(root,res,order)
-        return res
-    def traversalDFS(self,root,order="pre"):
-        res = []
-        stack = []
-        cur = root
-        #前序
-        if "pre" == order:
-            while stack or cur:
-                while cur:
-                    res.append(cur.val)
-                    stack.append(cur)
-                    cur = cur.left
-                cur = stack.pop()
-                cur = cur.right
-            return res
-        #中序
-        if "in" == order:
-            while stack or cur:
-                while cur:
-                    stack.append(cur)
-                    cur = cur.left
-                cur = stack.pop()
-                res.append(cur.val)
-                cur = cur.right
-            return res
-        #后序
-        if "post" == order:
-            while stack or cur:
-                while cur:
-                    res.append(cur.val)
-                    stack.append(cur)
-                    cur = cur.right
-                cur = stack.pop()
-                cur = cur.left
-            return res[::-1]
-    def traversalDFSpre(self,root,order="pre"):
-        if not root:
-            return []
-        res = []
-        stack= [root]
-        while stack:
-            cur = stack.pop()
-            res.append(cur.val)
-            if cur.right:
-                stack.append(cur.right)
-            if cur.left:
-                stack.append(cur.left)
-        return res
-    def traversalBFSlevel(self,root,order="pre"):
-        if not root:
-            return []
-        queue = [root]
-        res = [root.val]
-        while queue:
-            cur = queue.pop(0)
-            if cur.left:
-                queue.append(cur.left)
-                res.append(cur.left.val)
-            if cur.right:
-                queue.append(cur.right)
-                res.append(cur.right.val)
-        return res
-    def traversalDFSpost(self,root,order="post"):
-        if not root:
-            return []
-        res = []
-        stack= [root]
-        while stack:
-            cur = stack.pop()
-            if cur.left:
-                stack.append(cur.left)
-            if cur.right:
-                stack.append(cur.right)
-            res.append(cur.val)
-        return res[::-1]
-    def traversalLevel(self,root):
-        if not root:
-            return []
-        cur = [root]
-        res = []
-        while cur:
-            lay, layval = [],[]
-            for node in cur:
-                layval.append(node.val)
-                if node.left:
-                    lay.append(node.left)
-                if node.right:
-                    lay.append(node.right)
-            cur = lay
-            res.append(layval)
-        return res
-    def traversalflagiter(self,root,order):
-        res = []
-        qs = [(0,root)]
-        while qs:
-            if "level" != order:
-                flag, cur = qs.pop()
-            else:
-                flag, cur = qs.pop(0)
-            if not cur:
-                continue
-            if 0 == flag:
-                if "pre" == order:  # 根左右  re 右左根
-                    qs.append((0,cur.right))
-                    qs.append((0,cur.left))
-                    qs.append((1,cur))
-                if "in" == order:   # 左根右  re 右根左
-                    qs.append((0,cur.right))
-                    qs.append((1,cur))
-                    qs.append((0,cur.left))
-                if "post" == order: # 左右根  re 根右左
-                    qs.append((1,cur))
-                    qs.append((0,cur.right))
-                    qs.append((0,cur.left))
-                if "level" == order:# 层序 先上再下先左后右 queue left right 
-                    qs.append((1,cur))
-                    qs.append((0,cur.left))
-                    qs.append((0,cur.right))
-            else:
-                res.append(cur.val)
-        return res
-
 
 def main():
     n8 = TreeNode(8)
@@ -221,16 +107,22 @@ def main():
     n1 = TreeNode(1,n2,n3)
 
     root = n1
-    s = Solution()
-    print(s.traversalflagiter(root,"in"))
-
+    s = tr()
+    print(s.traversalflagiter(root,"pre"))
 
     c = Codec()
-    print("serialize")
-    res = c.serialize(root)
+    print("serializeRe")
+    res = c.serializeRe(root)
     print(res)
-    newroot = c.deserialize(res)
-    print(s.traversalflagiter(newroot,"in"))
+    rootRe = c.deserializeRe(res)
+    print(s.traversalflagiter(rootRe,"pre"))
     
+    print(s.traversalflagiter(root,"level"))
+    print("serializeBFS")
+    res = c.serializeBFS(root)
+    print(res)
+    rootBFS = c.deserializeBFS(res)
+    print(s.traversalflagiter(rootBFS,"level"))
+
 if __name__ == '__main__':
     main()
