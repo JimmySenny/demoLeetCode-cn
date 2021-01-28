@@ -1,5 +1,22 @@
 #!/usr/bin/env python3
 
+import time
+from functools import wraps
+
+"""
+def decorate_runTime_ms(func):
+    @wrap(func)
+    def wrap(*args,**kwargs):
+        import time
+        start_time = time.time()
+        func(*args,**kwargs)
+        end_time = time.time()
+        print('%s() runTime:%s ms'%(func.__name__,int(1000*(end_time-start_time))))
+        return func
+        #return f
+    return wrap
+"""
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -7,11 +24,15 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
-#    def traversal(self, root: TreeNode) -> List[int]:
+    #def traversal(self, root: TreeNode) -> List[int]:
+    # 对一个树进行遍历的不同方法模板
     def traversalRecursion(self, root,order="pre"):
+        # 递归-整体
         if not root:
             return []
+        #print("traversalRecursion",root.val)
         if "pre" == order:
             return [root.val] + self.traversalRecursion(root.left,order) + self.traversalRecursion(root.right,order)
         elif "in" == order:
@@ -20,6 +41,11 @@ class Solution:
             return self.traversalRecursion(root.left,order) + self.traversalRecursion(root.right,order) + [root.val]
         else:
             return None
+    def traversalRecursion2(self, root,order="pre"):
+        # 递归-逐个节点
+        res = []
+        self.recursionTraversal(root,res,order)
+        return res
     def recursionTraversal(self,curr,res,order):
         if not curr:
             return []
@@ -37,10 +63,6 @@ class Solution:
             res.append(curr.val)
         else:
             return None
-    def traversalRecursion2(self, root,order="pre"):
-        res = []
-        self.recursionTraversal(root,res,order)
-        return res
     def traversalRecursion3(self, root,order="pre"):
         # 同recursion2 
         return self.recursion3(root,order)
@@ -64,8 +86,8 @@ class Solution:
             noderight = self.recursion3(root.right,order)
             nodeleft = self.recursion3(root.left,order)
         return 
-
     def traversalDFS(self,root,order="pre"):
+        # 深度优先搜索
         res = []
         stack = []
         cur = root
@@ -100,6 +122,7 @@ class Solution:
                 cur = cur.left
             return res[::-1]
     def traversalDFSpre(self,root,order="pre"):
+        # 深度优先 另一种形式
         if not root:
             return []
         res = []
@@ -111,20 +134,6 @@ class Solution:
                 stack.append(cur.right)
             if cur.left:
                 stack.append(cur.left)
-        return res
-    def traversalBFSlevel(self,root,order="pre"):
-        if not root:
-            return []
-        queue = [root]
-        res = [root.val]
-        while queue:
-            cur = queue.pop(0)
-            if cur.left:
-                queue.append(cur.left)
-                res.append(cur.left.val)
-            if cur.right:
-                queue.append(cur.right)
-                res.append(cur.right.val)
         return res
     def traversalDFSpost(self,root,order="post"):
         if not root:
@@ -139,7 +148,23 @@ class Solution:
                 stack.append(cur.right)
             res.append(cur.val)
         return res[::-1]
+    def traversalBFSlevel(self,root,order="pre"):
+        # 广度优先-层序遍历
+        if not root:
+            return []
+        queue = [root]
+        res = [root.val]
+        while queue:
+            cur = queue.pop(0)
+            if cur.left:
+                queue.append(cur.left)
+                res.append(cur.left.val)
+            if cur.right:
+                queue.append(cur.right)
+                res.append(cur.right.val)
+        return res
     def traversalLevel(self,root):
+        # 迭代-层序遍历
         if not root:
             return []
         cur = [root]
@@ -156,6 +181,7 @@ class Solution:
             res.append(layval)
         return res
     def traversalflagiter(self,root,order):
+        # 迭代 标志位迭代
         res = []
         qs = [(0,root)]
         while qs:
@@ -186,6 +212,67 @@ class Solution:
                 res.append(cur.val)
         return res
 
+    #@self.decorate_runTime_ms(self)
+    def traversalSerialize(self, root,order1="pre",order2="pre"):
+        # 两次遍历 重复遍历情况
+        res = []
+        self.recursionTraversalSerialize(root,res,order1,order2)
+        return res
+    def recursionTraversalSerialize(self, root,res,order1="pre",order2="pre"):
+        # 按前序遍历每个节点
+        if not root:
+            return []
+        #print("recursionTraversalSerializeOne",root.val)
+        # 遍历到的当前节点
+        if "pre" == order1:
+            chain = self.traversalRecursion(root,order2)
+            res.append(chain)
+            #print(root.val,"--",str(chain))
+            left = self.recursionTraversalSerialize(root.left,res,order1,order2)
+            right = self.recursionTraversalSerialize(root.right,res,order1,order2)
+        elif "in" == order1:
+            left = self.recursionTraversalSerialize(root.left,res,order1,order2)
+            chain = self.traversalRecursion(root,order2)
+            res.append(chain)
+            #print(root.val,"--",str(chain))
+            right = self.recursionTraversalSerialize(root.right,res,order1,order2)
+        elif "post" == order1:
+            left = self.recursionTraversalSerialize(root.left,res,order1,order2)
+            right = self.recursionTraversalSerialize(root.right,res,order1,order2)
+            chain = self.traversalRecursion(root,order2)
+            res.append(chain)
+            #print(root.val,"--",str(chain))
+        return chain
+    #@decorate_runTime_ms()
+    def traversalSerializeOne(self, root,order1="post",order2="post"):
+        res = []
+        res.append(self.recursionTraversalSerializeOne(root,res,order1,order2))
+        return res
+    def recursionTraversalSerializeOne(self,root,res,order1="post",order2="post"):
+        if not root:
+            return ''
+        #print("recursionTraversalSerializeOne",root.val)
+        left = self.recursionTraversalSerializeOne(root.left,res)
+        right = self.recursionTraversalSerializeOne(root.right,res)
+
+        chain = left + ',' + right + ',' + str(root.val)
+        res.append(chain)
+        #print(root.val,"--",str(chain))
+
+        return chain
+    def decorate_runTime_ms(func):
+        #@wrap(func)
+        def wrap(self,*args,**kwargs):
+            import time
+            start_time = time.time()
+            f = func(*args,**kwargs)
+            end_time = time.time()
+            print('%s() runTime:%s ms'%(func.__name__,int(1000*(end_time-start_time))))
+            return f
+        return wrap
+    
+
+
 
 def main():
     n8 = TreeNode(8)
@@ -200,6 +287,7 @@ def main():
     root = n1
 
     s = Solution()
+    print("树的一次遍历")
     print("pre")
     print("traversalRecursion",s.traversalRecursion(root,"pre"))
     print("traversalRecursion2",s.traversalRecursion2(root,"pre"))
@@ -231,9 +319,18 @@ def main():
     print("traversalLevel",s.traversalLevel(root))
     print("traversalflagiter",s.traversalflagiter(root,"level"))
 
-    print("traversalRecursion3")
+    print("traversalRecursion3-other")
     s.traversalRecursion3(root,"other")
     print()
+
+    print("树的每一个节点的序列")
+    timeStamp1 = time.time()
+    print("traversalSerialize",s.traversalSerialize(root,"pre","pre"))
+    timeStamp2 = time.time()
+    print("traversalSerializeOne",s.traversalSerializeOne(root,"post","post"))
+    timeStamp3 = time.time()
+    print(timeStamp2-timeStamp1)
+    print(timeStamp3-timeStamp2)
 
 if __name__ == '__main__':
     main()
