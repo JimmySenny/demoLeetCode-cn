@@ -111,7 +111,11 @@ class BSTree:
             return None
         #delete the current node
         print("key,root.key", key, root.key)
-        if key == root.key:
+        if key > root.key:
+            root.right = self.deleteBSTree(root.right, key)
+        elif key < root.key:
+            root.left = self.deleteBSTree(root.left, key)
+        else: # key == root.key:
             # the node is a leaf 叶子节点
             if not root.left and not root.right:
                 root = None 
@@ -131,10 +135,6 @@ class BSTree:
                     leftMax = leftMax.right
                 root.key = leftMax.key
                 root.left = self.deleteBSTree(root.left, root.key)
-        elif key > root.key:
-            root.right = self.deleteBSTree(root.right, key)
-        else:
-            root.left = self.deleteBSTree(root.left, key)
         return root
     def iterBSTree(self, root, order = 'pre'):
         res = []
