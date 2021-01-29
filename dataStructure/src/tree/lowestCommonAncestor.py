@@ -13,6 +13,7 @@ class Solution:
         return self.recursionLCA(root,p,q)
     def recursionLCA(self, root, p, q):
         """
+        适用所有二叉树
         #递归法序遍历二叉树
         左边没找到右边也没找到。说明题目给的二叉树根本不包含 p 或 q，返回 nullptr。
         左边找到了右边也找到了。说明 p 和 q 分居在 root 的两侧，那么最低公共祖先为 root，返回 root。
@@ -41,6 +42,26 @@ class Solution:
             print("LCA:",root.val)
             ans = root
         return lson or rson or (root.val==p.val or root.val==q.val)
+    def lowestCommonAncestorrecursionBST(self, root, p, q):
+        """
+        适用二叉搜索树
+        利用二叉搜索树特性，我们从根节点开始遍历；
+        如果当前节点的值大于 p 和 q 的值，说明 p 和 q
+          应该在当前节点的左子树，因此将当前节点移动到它的左子节点；
+        如果当前节点的值小于 p 和 q 的值，说明 p 和 q
+          应该在当前节点的右子树，因此将当前节点移动到它的右子节点；
+        如果当前节点的值不满足上述两条要求，那么说明当前节点就是「分岔点」。
+          此时p 和 q 要么在当前节点的不同的子树中，要么其中一个就是当前节点。
+        """
+        cur = root
+        while cur:
+            if p.val < cur.val and q.val < cur.val:
+                cur = cur.left
+            elif p.val > cur.val and q.val > cur.val:
+                cur = cur.right
+            else:
+                break
+        return cur
 
 
 def main():
