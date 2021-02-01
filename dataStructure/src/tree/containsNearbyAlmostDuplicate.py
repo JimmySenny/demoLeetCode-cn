@@ -26,10 +26,20 @@ class BSTree:
         while cur.left:
             cur = cur.left
         return cur.val if cur else float('inf')
+    def findTNum(self, val, target):
+        cur = self.root
+        while cur:
+            if abs(val - cur.val) <= target:
+                return True
+            elif cur.val > val:
+                cur = cur.left
+            else:
+                cur = cur.right
+        return False
     def insertIntoBSTRe(self, root, val):
         if not root:
-            self.maxNum = val if val > self.maxNum else self.maxNum
-            self.minNum = val if val < self.minNum else self.minNum
+            #self.maxNum = val if val > self.maxNum else self.maxNum
+            #self.minNum = val if val < self.minNum else self.minNum
             return TreeNode(val)
         if root.val == val:
             return root
@@ -39,12 +49,15 @@ class BSTree:
             root.right = self.insertIntoBSTRe(root.right, val)
         return root
     def deleteNodeRe(self, root, val):
+        return self.recursiondeleteBST(root,val)
+        """
         node = self.recursiondeleteBST(root,val)
         if self.maxNum == val:
             self.maxNum = self.findMaxNum()
         if self.minNum == val:
             self.minNum = self.findMinNum()
         return node
+        """
     def recursiondeleteBST(self,root,val):
         if not root:
             return None
@@ -130,7 +143,18 @@ class Solution:
                     break
                 #print("--while2",pl,pr,nums[pr],bst.maxNum,bst.minNum)
                 # nums [i] 和 nums [j] 的差的绝对值小于等于 t
-                if abs(bst.minNum-nums[pr]) <= t or abs(bst.maxNum-nums[pr]) <= t:
+                """
+                if nums[pr] >= bst.maxNum:
+                    if abs(bst.maxNum-nums[pr]) <= t:
+                        return True
+                elif nums[pr] <= bst.minNum:
+                    if abs(bst.minNum-nums[pr]) <= t:
+                        return True
+                else:
+                    if bst.findTNum(nums[pr],t):
+                        return True
+                """
+                if bst.findTNum(nums[pr],t):
                     return True
                 bst.insertIntoBSTRe(bst.root,nums[pr])
                 #print("==bstiter",bst.traversalflagiter(bst.root,"in"))

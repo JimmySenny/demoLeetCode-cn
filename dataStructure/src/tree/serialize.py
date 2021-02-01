@@ -109,18 +109,21 @@ def main():
     root = n1
     s = tr()
     print(s.traversalflagiter(root,"pre"))
+    print(s.traversalflagiter(root,"in"))
+    print(s.traversalflagiter(root,"post"))
 
     c = Codec()
     print("serializeRe")
     res = c.serializeRe(root)
-    print(res)
+    print("serializeRe result:", res)
     rootRe = c.deserializeRe(res)
     print(s.traversalflagiter(rootRe,"pre"))
     
     print(s.traversalflagiter(root,"level"))
+
     print("serializeBFS")
     res = c.serializeBFS(root)
-    print(res)
+    print("serializeBFS result:", res)
     rootBFS = c.deserializeBFS(res)
     print(s.traversalflagiter(rootBFS,"level"))
 

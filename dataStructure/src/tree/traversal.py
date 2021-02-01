@@ -213,7 +213,8 @@ class Solution:
         return res
 
     #@self.decorate_runTime_ms(self)
-    def traversalSerialize(self, root,order1="pre",order2="pre"):
+    def traversalSerializeUp2Down(self, root,order1="pre",order2="pre"):
+        # 自顶向下递归
         # 两次遍历 重复遍历情况
         res = []
         self.recursionTraversalSerialize(root,res,order1,order2)
@@ -222,7 +223,7 @@ class Solution:
         # 按前序遍历每个节点
         if not root:
             return []
-        #print("recursionTraversalSerializeOne",root.val)
+        #print("recursionTraversalSerializeDown2Up",root.val)
         # 遍历到的当前节点
         if "pre" == order1:
             chain = self.traversalRecursion(root,order2)
@@ -244,16 +245,17 @@ class Solution:
             #print(root.val,"--",str(chain))
         return chain
     #@decorate_runTime_ms()
-    def traversalSerializeOne(self, root,order1="post",order2="post"):
+    def traversalSerializeDown2Up(self, root,order1="post",order2="post"):
+        # 自底向上递归
         res = []
-        res.append(self.recursionTraversalSerializeOne(root,res,order1,order2))
+        res.append(self.recursionTraversalSerializeDown2Up(root,res,order1,order2))
         return res
-    def recursionTraversalSerializeOne(self,root,res,order1="post",order2="post"):
+    def recursionTraversalSerializeDown2Up(self,root,res,order1="post",order2="post"):
         if not root:
             return ''
-        #print("recursionTraversalSerializeOne",root.val)
-        left = self.recursionTraversalSerializeOne(root.left,res)
-        right = self.recursionTraversalSerializeOne(root.right,res)
+        #print("recursionTraversalSerializeDown2Up",root.val)
+        left = self.recursionTraversalSerializeDown2Up(root.left,res)
+        right = self.recursionTraversalSerializeDown2Up(root.right,res)
 
         chain = left + ',' + right + ',' + str(root.val)
         res.append(chain)
@@ -325,9 +327,9 @@ def main():
 
     print("树的每一个节点的序列")
     timeStamp1 = time.time()
-    print("traversalSerialize",s.traversalSerialize(root,"pre","pre"))
+    print("traversalSerializeUp2Down",s.traversalSerializeUp2Down(root,"pre","pre"))
     timeStamp2 = time.time()
-    print("traversalSerializeOne",s.traversalSerializeOne(root,"post","post"))
+    print("traversalSerializeDown2Up",s.traversalSerializeDown2Up(root,"post","post"))
     timeStamp3 = time.time()
     print(timeStamp2-timeStamp1)
     print(timeStamp3-timeStamp2)
