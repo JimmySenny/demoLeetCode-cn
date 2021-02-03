@@ -18,13 +18,16 @@ class TrieNode:
     def __init__(self):
         self.isEnd = False
         self.children = collections.defaultdict(TrieNode)
+
 from myTrie import Trie as Trie
 
 class Solution:
+    def __init__(self):
+        self.root = Trie()
     #def replaceWords(self, dictionary: List[str], sentence: str) -> str:
     def replaceWords(self, dictionary, sentence):
         print(dictionary,sentence)
-        trie = Trie()
+        trie = self.root
         return self.proc(trie,self.initTrie(trie,dictionary),sentence)
     def initTrie(self,trie,dictionary):
         # 构建前缀树
@@ -46,16 +49,25 @@ class Solution:
             ans += " "
         return ans
 
+    def traversal(self):
+        t = Trie()
+        return 
+
 
 def main():
+    s = Solution()
     dictionary = ["cat","bat","rat"]
     sentence = "the cattle was rattled by the battery"
-    s = Solution()
     print(s.replaceWords(dictionary, sentence))
 
+    s1 = Solution()
     dictionary1 = ["a", "aa", "aaa", "aaaa"]
     sentence1 = "a aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa"
-    print(s.replaceWords(dictionary1, sentence1))
+    print(s1.replaceWords(dictionary1, sentence1))
+
+    t = Trie()
+    print(t.traversalTrieLevel(s.root.root,t.diclist))
+    print(t.traversalTrieLevel(s1.root.root,t.diclist))
 
 if __name__ == '__main__':
     main()

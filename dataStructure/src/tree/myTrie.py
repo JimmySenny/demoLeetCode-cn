@@ -23,6 +23,7 @@ class Trie:
     def __init__(self):
         """ Initialize your data structure here.  """
         self.root = TrieNode()
+        self.diclist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
     #def insert(self, word: str) -> None:
     def insert(self, word):
@@ -61,15 +62,62 @@ class Trie:
             if c in node.children:
                 node = node.children[c]
                 ss += c
-                print("s,c,ss",s,c,ss)
+                #print("s,c,ss",s,c,ss)
                 if node.isEnd:
                     return ss
             else:
                 break
         return s
-    def traversalNTreeFlagIter(self,order):
+    """
+    def traversalTrieRecursion(self,root,order="pre"):
+        if not root:
+            return []
+        if "pre" == order:
+            res = root.children
+    """
+    def traversalTrieDFS(self,root,diclist):
+        if not root:
+            return []
+        stack = [root]
         res = []
-        qs = [(0,self.root)]
+        tmp = []
+        while stack:
+            cur = stack.pop()
+            if cur.children:
+                for s in diclist:
+                    if s in cur.children:
+                        tmp.append(s)
+                        stack.append(cur.children[s])
+            if cur.isEnd:
+                res.append(list(tmp))
+                tmp = []
+        return res
+
+    def traversalTrieLevel(self,root,diclist):
+        if not root:
+            return []
+        cur = [root]
+        res = []
+        while cur:
+            lay, layval = [], []
+            #print("lay",cur)
+            for node in cur:
+                #print(list(node.children))
+                if node.children:
+                    layval.append(list(node.children.keys()))
+                    for s in diclist:
+                        if s in node.children:
+                            #print(s,list(node.children))
+                            lay.append(node.children[s])
+            cur = lay
+            if layval:
+                res.append(layval)
+        return res
+    def traversalTrieFlagIter(self,root,diclist,order):
+        if not root:
+            return []
+        res = []
+        qs = [(0,root)]
         while qs:
             if "level" != order:
                 flag, cur = qs.pop()
@@ -80,30 +128,39 @@ class Trie:
             if 0 == flag:
                 if "pre" == order:
                     if cur.children:
+                        for s in cur.children:
+                            qs.append((0,cur.children[s]))
+                        """
                         i = len(cur.children) - 1
                         while i >= 0:
                             qs.append((0,cur.children[i]))
                             i -= 1
+                        """
                     qs.append((1,cur))
                 if "post" == order:
                     qs.append((1,cur))
                     if cur.children:
+                        for s in cur.children:
+                            qs.append((0,cur.children[s]))
+                        """
                         i = len(cur.children) - 1
                         while i >= 0:
                             qs.append((0,cur.children[i]))
                             i -= 1
+                        """
                 if "level" == order:
                     qs.append((1,cur))
                     if cur.children:
+                        for s in cur.children:
+                            qs.append((0,cur.children[s]))
+                        """
                         for i in range(len(cur.children)):
                             qs.append((0,cur.children[i]))
-
-                        """
-                        for node in cur.children:
-                            qs.append((0,node))
                         """
             else:
-                res.append(cur.children.keys())
+                #print(list(cur.children))
+                if cur.children:
+                    res.append(list(cur.children))
         return res
 
 # Your Trie object will be instantiated and called as such:
@@ -115,14 +172,19 @@ class Trie:
 def main():
     obj = Trie()
     obj.insert("apple")
+    obj.insert("apply")
     print("search:",obj.search("apple"))
     print("search:",obj.search("banana"))
     print("startsWith:",obj.startsWith("app"))
     print("startsWith:",obj.startsWith("b"))
 
-    print(obj.traversalNTreeFlagIter("pre"))
-    print(obj.traversalNTreeFlagIter("post"))
-    print(obj.traversalNTreeFlagIter("level"))
+    print(obj.traversalTrieDFS(obj.root, obj.diclist))
+    print(obj.traversalTrieLevel(obj.root, obj.diclist))
+    print(obj.traversalTrieFlagIter(obj.root, obj.diclist, "pre"))
+    print(obj.traversalTrieFlagIter(obj.root, obj.diclist, "post"))
+    print(obj.traversalTrieFlagIter(obj.root, obj.diclist, "level"))
 
 if __name__ == '__main__':
     main()
+
+

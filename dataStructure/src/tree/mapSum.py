@@ -37,7 +37,7 @@ class MapSum:
         return ans
     def sumxDFS(self,root):
         if not root:
-            return [0]
+            return 0
         stack = [root]
         ans = 0
         while stack:
@@ -45,6 +45,7 @@ class MapSum:
             if cur.isEnd:
                 ans += cur.val
             if cur.children:
+                print("values:",cur.children.values())
                 stack.extend(cur.children.values())
         return ans
 
