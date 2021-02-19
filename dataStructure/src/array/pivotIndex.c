@@ -1,6 +1,7 @@
 #include "ds_array.h"
 
 
+// 寻找数组的中心索引
 int pivotIndex(int* nums, int numsSize){
     int i = 0, j = numsSize-1;
     int sum, leftsum, rightsum = 0;
@@ -21,10 +22,10 @@ int pivotIndex(int* nums, int numsSize){
      */
     sum = 0;
     for( i = 0; i < numsSize; i++ ){
-	    printf( "sum[%d]\n", sum );
+        printf( "sum[%d]\n", sum );
         sum += nums[i];
     }
-	printf( "sum[%d]\n", sum );
+    printf( "sum[%d]\n", sum );
 
     leftsum = 0;
     for( i=0; i < numsSize; i++ ){
@@ -32,7 +33,7 @@ int pivotIndex(int* nums, int numsSize){
             return i;
         }
         leftsum += nums[i];
-		printf( "leftsum[%d]i[%d]\n", leftsum, i );
+        printf( "leftsum[%d]i[%d]\n", leftsum, i );
     }
 
     return -1;

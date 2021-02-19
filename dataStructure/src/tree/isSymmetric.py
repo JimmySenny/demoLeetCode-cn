@@ -23,7 +23,7 @@ class Solution:
     def isSymmetricIter(self,root):
         if not root:
             return True
-        if self.traversalIter(root.left,"pre") == self.traversalIter(root.right,"post"):
+        if self.traversalIter(root.left,"pre") == self.traversalIter(root.right,"prere"):
             return True
         else:
             return False
@@ -40,7 +40,7 @@ class Solution:
                     stack.append((0,cur.right))
                     stack.append((0,cur.left))
                     stack.append((1,cur))
-                if "post" == order:
+                if "prere" == order:
                     stack.append((0,cur.left))
                     stack.append((0,cur.right))
                     stack.append((1,cur))
