@@ -1,5 +1,7 @@
 a.out
 
+*.class
+
 *.o
 *.a
 *.so
