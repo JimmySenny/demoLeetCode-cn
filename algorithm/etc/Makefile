@@ -1,4 +1,4 @@
-WORKDIR    = /home/jimmy/demoLeetCode-cn/algorithm-initial
+WORKDIR    = /home/jimmy/demoLeetCode-cn/algorithm
 LUTILDIR   = /home/jimmy/demoLeetCode-cn/lutil
 
 CC         = gcc

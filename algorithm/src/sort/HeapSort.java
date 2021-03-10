@@ -3,7 +3,8 @@ import java.util.Arrays;
 
 public class HeapSort{
     public static void main(String[] args){
-        int [] arr = {5,1,7,6,9,4,3,8,2};
+        //int [] arr = {5,1,7,6,9,4,3,8,2};
+        int [] arr = {3,2,3,1,2,4,5,5,6};
         System.out.println("Before:"+Arrays.toString(arr));
         maxHeapSort(arr);
         System.out.println("After:"+Arrays.toString(arr));
@@ -50,6 +51,7 @@ public class HeapSort{
     public static void adjustHeap(int []arr,int i,int len){
         /**
          * recursion 递归解决
+         */
         // 根据堆性质，找出它左右子节点的索引
         int indexLeft = 2*i + 1;
         int indexRight = indexLeft + 1;
@@ -68,9 +70,8 @@ public class HeapSort{
             // 如果该子节点也有自己的子节点，仍需要再次调整。
             adjustHeap(arr,indexMax,len);
         }
-         */
-        /*
-         */
+        /**
+         * 
         // 先取出当前元素i的值
         int temp = 0;
         // j指i节点子节点的子节点
@@ -91,7 +92,9 @@ public class HeapSort{
             i = j;
             j = 2*i+1;
         }
-        /*
+         */
+        /**
+         *
         int temp = arr[i];//先取出当前元素i
         //从i结点的左子结点开始，也就是2i+1处开始]
         for(int k=i*2+1;k<len;k=k*2+1){
