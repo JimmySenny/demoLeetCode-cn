@@ -41,6 +41,9 @@ class Solution:
         if j >= 0:
             nums1[0:j+1] = nums2[0:j+1]
         return
+    def merge3(self, nums1, m, nums2, n):
+        # 归并排序排序
+        pass
 
 def main():
     s = Solution();
