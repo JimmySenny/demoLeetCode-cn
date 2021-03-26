@@ -19,6 +19,7 @@ class Solution:
         return self.quickPowRe(x,N) if N >= 0 else 1.0 / self.quickPowRe(x, -N)
 
     def quickPowRe(self, x, N):
+        print("N:", N)
         if 0 == N:
             return 1.0
         y = self.quickPowRe(x, N//2)
@@ -28,7 +29,7 @@ class Solution:
         由于递归需要使用额外的栈空间，我们试着将递归转写为迭代
         借助整数的二进制拆分，就可以得到迭代计算的方法
         """
-        return self.quickPowIter(x,n) if n >= 0 else 1.0 / self.quickPowIter(x,n)
+        return self.quickPowIter(x,n) if n >= 0 else 1.0 / self.quickPowIter(x,-n)
     def quickPowIter(self, x, N):
         ans = 1.0
         # 贡献的初始值为 x
@@ -38,6 +39,7 @@ class Solution:
             if (N % 2) == 1:
                 # 如果 N 二进制表示的最低位为 1，那么需要计入贡献
                 ans *= x_contribute
+            print("N,ans,x:", N, ans, x_contribute)
             # 将贡献不断地平方
             x_contribute *= x_contribute
             # 舍弃 N 二进制表示的最低位，这样我们每次只要判断最低位即可
@@ -49,7 +51,8 @@ def main():
     s = Solution()
 
     x = 2.0
-    n = 8
+    #n = 8
+    n = -2
 
     print("PowRecursion:",s.myPowRecursion(x,n))
     print("PowIteration:",s.myPowIteration(x,n))
