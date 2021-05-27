@@ -115,6 +115,7 @@ void tst_twoSum( void ){
 
     int len = 0;
 
+    printf("tst_twoSum()");
     twoSum( nums, length, 9, &len ); 
 
     printNums( nums, len );

@@ -18,6 +18,7 @@ int main(int argc, char* argv[]){
     tst_isValidSudoku();
     tst_rotatei();
     */
+    tst_twoSum();
 
     /*
      * string
@@ -28,8 +29,8 @@ int main(int argc, char* argv[]){
     tst_isPalindrome();
     tst_myAtoi();
     tst_strStr();
-     */
     tst_longestCommonPrefix();
+     */
 
     return 0;
 }
